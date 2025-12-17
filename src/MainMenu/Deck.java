@@ -1,0 +1,66 @@
+package MainMenu;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+
+public class Deck {
+//    <editor-fold desc="unholy block of tiles">
+    public ArrayList<Integer> AllTiles = new ArrayList<> (
+        Arrays.asList(
+            11,11,11,11,
+            12,12,12,12,
+            13,13,13,13,
+            14,14,14,14,
+            15,15,15,15,
+            16,16,16,16,
+            17,17,17,17,
+            21,21,21,21,
+            22,22,22,22,
+            23,23,23,23,
+            24,24,24,24,
+            25,25,25,250,
+            26,26,26,26,
+            27,27,27,27,
+            28,28,28,28,
+            29,29,29,29,
+            31,31,31,31,
+            32,32,32,32,
+            33,33,33,33,
+            34,34,34,34,
+            35,35,35,350,
+            36,36,36,36,
+            37,37,37,37,
+            38,38,38,38,
+            39,39,39,39,
+            41,41,41,41,
+            42,42,42,42,
+            43,43,43,43,
+            44,44,44,44,
+            45,45,45,450,
+            46,46,46,46,
+            47,47,47,47,
+            48,48,48,48,
+            49,49,49,49
+        ));
+//    </editor-fold>
+    public ArrayList<Integer> CurrentDeck;
+    private Random rand = new Random();
+
+    public void initializeDeck(){
+        CurrentDeck = (ArrayList<Integer>) AllTiles.clone();
+        for (int i = 0; i < CurrentDeck.size(); i++){
+            int randDom = rand.nextInt(CurrentDeck.size());
+            int buff = CurrentDeck.get(i);
+            CurrentDeck.set(i, CurrentDeck.get(randDom));
+            CurrentDeck.set(randDom, buff);
+        }
+    }
+    public int getRandomTile() {
+        int tileIndex = rand.nextInt(CurrentDeck.size()-1);
+        int retturturn = CurrentDeck.get(tileIndex);
+        CurrentDeck.remove(tileIndex);
+        return retturturn;
+
+    }
+}
