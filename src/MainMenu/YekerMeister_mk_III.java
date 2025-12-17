@@ -352,9 +352,11 @@ public class YekerMeister_mk_III {
     }
     Boolean YIpeikou(){
         for (int i = 0; i < hand.length-5; i++) {
-            if (hand[i] == hand[i+1]){
-                if(hand[i]+1 == hand[i+3] && hand[i]+2 == hand[i+5]){
-                    return true;
+            if(hand[i]< 20){}else {
+                if (hand[i] == hand[i + 1]) {
+                    if (hand[i] + 1 == hand[i + 3] && hand[i] + 2 == hand[i + 5]) {
+                        return true;
+                    }
                 }
             }
         }
@@ -446,11 +448,12 @@ public class YekerMeister_mk_III {
         for (int t : hand) {
             count.put(t, count.getOrDefault(t, 0) + 1);
         }
-
+//        here bitch talismans duplicate
+        int honourConunter =0;
         for (int t : hand) {
             int suit = t / 10;
             int num = t % 10;
-            if (suit == 1) continue;
+            if (suit == 1) {honourConunter++; continue;};
             if (num >= 4 && num <= 6) return false;
             int c = count.get(t);
             if (c == 2) pairCount++;
@@ -463,6 +466,7 @@ public class YekerMeister_mk_III {
             if (num == 9) {if (!count.containsKey(t - 1) && !count.containsKey(t - 2)) return false;}
             if (c == 1) return false;
         }
+        if (honourConunter==hand.length) return false;
 
         return true;
     }

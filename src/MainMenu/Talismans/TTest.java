@@ -19,6 +19,6 @@ public class TTest extends TalismanA {
 
     @Override
     public void TakeEffect() {
-        gameGame.han *=21;
+        gameGame.han *= (int) Math.pow(3,power);
     }
 }
