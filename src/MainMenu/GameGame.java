@@ -222,7 +222,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             Switch.setBackground(new Color(245, 205, 105, 255));
             Switch.setFont(Jap);
             Switch.addActionListener(e -> {
-    //            TODO ADD FUNCTION DUMBFUCK
+    //            TODO ADD FUNCTION DUMB FUCK
                 try {
                     switchTM();
                 } catch (IOException ex) {
@@ -1300,7 +1300,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             yakuHolder1.setBackground(new Color(103,255,22,255));
             yakusPanel.add(yakuHolder1);
 
-            // ... rest of your yaku content code (keep this the same)
             ImageIcon icon;
             Image scaledImage;
             Image image;

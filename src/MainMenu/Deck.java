@@ -66,4 +66,10 @@ public class Deck {
         return retturturn;
 
     }
+    public int getRandomTileNR() {
+        int tileIndex = rand.nextInt(CurrentDeck.size()-1);
+        int retturturn = CurrentDeck.get(tileIndex);
+        return retturturn;
+
+    }
 }

@@ -10,6 +10,7 @@ public class TTest extends TalismanA {
     public TTest(Game gameContext, GameGame gameGameContext) {
         super(gameContext, gameGameContext);
         power = 1;
+        Finisher = true;
     }
 
     @Override

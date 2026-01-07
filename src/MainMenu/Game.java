@@ -1,5 +1,6 @@
 package MainMenu;
 
+import MainMenu.Talismans.T1x0;
 import MainMenu.Talismans.TTest;
 import MainMenu.Talismans.TalismanA;
 
@@ -18,7 +19,8 @@ public class Game extends JPanel implements ActionListener {
     //    <editor-fold desc="EVEN UNHOLIER MONLITH>
 public Map<String, Class<? extends TalismanA>> talismansAlles =
         new HashMap<>(Map.of(
-                "1-36", TTest.class
+                "1-36", TTest.class,
+                "1-0", T1x0.class
         ));
 
     public TalismanA[] talismansAct = new TalismanA[8];
