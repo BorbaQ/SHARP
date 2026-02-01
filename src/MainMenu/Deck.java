@@ -15,7 +15,6 @@ public class Deck {
             15,15,15,15,
             16,16,16,16,
             17,17,17,17,
-
             21,21,21,21,
             22,22,22,22,
             23,23,23,23,
@@ -25,7 +24,6 @@ public class Deck {
             27,27,27,27,
             28,28,28,28,
             29,29,29,29,
-
             31,31,31,31,
             32,32,32,32,
             33,33,33,33,
@@ -35,7 +33,6 @@ public class Deck {
             37,37,37,37,
             38,38,38,38,
             39,39,39,39,
-
             41,41,41,41,
             42,42,42,42,
             43,43,43,43,
@@ -46,6 +43,7 @@ public class Deck {
             48,48,48,48,
             49,49,49,49
         ));
+    public static int[] uniqueTiles= {11,12,13,14,15,16,17,21,22,23,24,25,26,27,28,29,31,32,33,34,35,36,37,38,39,41,42,43,44,45,46,47,48,49};
 //    </editor-fold>
     public ArrayList<Integer> CurrentDeck;
     private Random rand = new Random();
@@ -63,12 +61,6 @@ public class Deck {
         int tileIndex = rand.nextInt(CurrentDeck.size()-1);
         int retturturn = CurrentDeck.get(tileIndex);
         CurrentDeck.remove(tileIndex);
-        return retturturn;
-
-    }
-    public int getRandomTileNR() {
-        int tileIndex = rand.nextInt(CurrentDeck.size()-1);
-        int retturturn = CurrentDeck.get(tileIndex);
         return retturturn;
 
     }

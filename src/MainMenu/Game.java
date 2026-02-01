@@ -1,6 +1,7 @@
 package MainMenu;
 
-import MainMenu.Talismans.T1x0;
+import MainMenu.Talismans.T0_1;
+import MainMenu.Talismans.T0_3;
 import MainMenu.Talismans.TTest;
 import MainMenu.Talismans.TalismanA;
 
@@ -20,7 +21,8 @@ public class Game extends JPanel implements ActionListener {
 public Map<String, Class<? extends TalismanA>> talismansAlles =
         new HashMap<>(Map.of(
                 "1-36", TTest.class,
-                "1-0", T1x0.class
+                "0-0", T0_1.class,
+                "0-2", T0_3.class
         ));
 
     public TalismanA[] talismansAct = new TalismanA[8];
@@ -51,7 +53,7 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
     public int DoraShopLimit = upgradeCost[2].length-1;
     JButton startGameButton;
     public int currentLevel =0;
-    public int[][] talismans = new int[8][3];
+    public int[][] talismans = new int[8][2];
     public int numTalismans = 0;
     boolean twotalismans = false;
     JLayeredPane layeredPane;
@@ -60,6 +62,18 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
     JButton SkipTalismansButton;
     FontMetrics labelSize;
     JPanel ChooseTalisman;
+
+    public int[] fuval = {
+            10,10,10,10,10,10,10,
+            5,5,5,5,5,5,5,5,5,
+            5,5,5,5,5,5,5,5,5,
+            5,5,5,5,5,5,5,5,5
+    };
+
+    public boolean isShop = false;
+    public int bargain = 0;
+
+    public int locked = 0;
 
 //</editor-fold>
     Game() throws IOException, FontFormatException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
@@ -73,9 +87,9 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
         System.out.println("Final power: " + t.power);
 
 
-        talismans[0] = null;
-        talismans[1] = new int[] {1,36,0};
-        System.out.println(Arrays.toString(talismans[1]));
+        talismans[0] = new int[] {0,6};
+        talismansAct[0] = talismansAlles.get("0-6").getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);
+        talismans[1] = new int[] {1,36};
         talismansAct[1] = talismansAlles.get("1-36").getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);
         talismans[2] = null;
         talismans[3] = null;
@@ -83,7 +97,7 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
         talismans[5] = null;
         talismans[6] = null;
         talismans[7] = null;
-        numTalismans = 1;
+        numTalismans = 2;
 
         this.setLayout(new BorderLayout());
         layeredPane = new JLayeredPane();
@@ -132,26 +146,26 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
     }
     public Boolean addTalisman(int category,int index) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         for (int i =0; i < talismans.length;i++){
-            if (talismans[i] != null) {
-                if (talismans[i][0] == category && talismans[i][1] == index) {
-                    talismans[i][2] = 1;
-                    talismansAct[i].handleUpgrade();
-                    System.out.println("Addin " + category + "  " + index + "  " + i);
-                    return true;
-                }
+            if (Arrays.equals(talismans[i], new int[]{category, index})){
+                talismans[i] = new int[]{0,0};
+                talismans[i][0] = category;
+                talismans[i][1] = index+1;
+                talismansAct[i].handleUpgrade();
+                System.out.println("Addin "+ category + "  "+index+"  "+i);
+                return true;
             }
+//  todo         here so i kind of added upgrading talismans and talismans functionality core
+//  todo         before you can test it all out you should add all talismans even place holders cause of this shitty line
+//  todo         good luck and remember its better to cum in the sink than to sink in the cum
         }
         for (int i =0; i < talismans.length;i++){
             if (talismans[i] == null){
-                talismans[i] = new int[]{0,0,0};
+                System.out.println("Addin "+ category + "  "+index+"  "+i);
+                talismans[i] = new int[]{0,0};
                 talismans[i][0] = category;
                 talismans[i][1] = index;
-                System.out.println(Arrays.toString(new int[3]));
-                System.out.println(Arrays.toString(talismans[i]));
-                talismans[i][2] = 0;
                 talismansAct[i] = talismansAlles.get(category+"-"+index).getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);// shitty line
                 numTalismans++;
-                System.out.println("Addin "+ category + "  "+index+"  "+i);
                 return true;
             }
         }
@@ -164,6 +178,11 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
             layeredPane.remove(startGameButton);
             try {
                 shop = new Shop();
+                isShop = true;
+                bargain = 0;
+                for (TalismanA tali : talismansAct){
+                    if (tali!=null){tali.TakeEffect();}
+                }
                 currentGamePanel = shop;
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
@@ -394,11 +413,10 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
     public void SwitchTalismans(int startIndex,int endIndex){
 
         int[] buffor = talismans[startIndex];
-        talismans[startIndex] = talismans[endIndex];
-        talismans[endIndex] = buffor;
-
         TalismanA buffor2 = talismansAct[startIndex];
+        talismans[startIndex] = talismans[endIndex];
         talismansAct[startIndex] = talismansAct[endIndex];
+        talismans[endIndex] = buffor;
         talismansAct[endIndex] = buffor2;
     }
     public void sellTalisman(int talismanIndex){
@@ -418,6 +436,7 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
         }
         numTalismans-=1;
         talismans[talismanIndex] = null;
+        talismansAct[talismanIndex] = null;
     }
 
     public void showTalismans(){
@@ -486,9 +505,6 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
                             break;
                     }
                     talismanIndex = talismans[i][1];
-                    if  (talismans[i][2] == 1){
-                        talismanIndex += 1;
-                    }
                     System.out.println(" "+i + "  " + talismanIndex + " Ene due rike fake weź tego śmierdziela w łape ");
                     if (talismanIndex < 10) {
                         icon = new ImageIcon("src/imgs/talismans/" + imgDir + "/talisman00" + talismanIndex + ".png");
@@ -501,8 +517,7 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
                     //        </editor-fold>
 
                     JLabel label = new JLabel(new ImageIcon(scaledImage));
-                    label.add(new JavowyUpominek(String.valueOf(Main.mainWindow.game.talismansAct[i].power), this.getWidth(), this.getHeight()));
-
+                    label.add(new JavowyUpominek( String.valueOf(Main.mainWindow.game.talismansAct[i].power),this.getWidth(),this.getHeight() ));
                     talisman3.add(label);
                     talisman3.setAlignmentY(Component.TOP_ALIGNMENT);
 

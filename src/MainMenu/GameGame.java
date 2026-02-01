@@ -39,7 +39,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     int Kans =0;
     int switches = 3;
     int wallIndex =0;
-    int lastTile =0;
+    public int lastTile =0;
     public int fu;
     public int han;
     public Boolean isWinning = false;
@@ -63,19 +63,30 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     ArrayList<JLabel> DoraLabels = new ArrayList<>();
     ArrayList<Image> DoraimgsOriginal = new ArrayList<>();
     Timer timer;
+
+
+    public boolean canWin = false;
+    public boolean winForgo = false;
+    public boolean initialization = true;
+    public int locked =0;
+
 //</editor-fold>
     GameGame() throws IOException, FontFormatException {
 
-        for (int[] talisman : Main.mainWindow.game.talismans){
-            if (talisman != null){
-                if (talisman[1] %2 == 1){
-
-                }
-            }
-        }
         points = 0;
 
         //    <editor-fold desc="Initialization">
+
+
+        System.out.println("11 milionow"+ Arrays.toString(Main.mainWindow.game.talismansAct));
+        talismansActual = Main.mainWindow.game.talismansAct;
+        for (TalismanA talisman : talismansActual){
+            if (talisman != null){
+                talisman.gameGame = this;
+                talisman.TakeEffect();
+            }
+        }
+        initialization = false;
 
         if (Main.mainWindow == null) {
             this.setBounds(0, 0, 1920, 1080);
@@ -222,7 +233,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             Switch.setBackground(new Color(245, 205, 105, 255));
             Switch.setFont(Jap);
             Switch.addActionListener(e -> {
-    //            TODO ADD FUNCTION DUMB FUCK
+    //            TODO ADD FUNCTION DUMBFUCK
                 try {
                     switchTM();
                 } catch (IOException ex) {
@@ -940,6 +951,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 winButton= new JButton();;
                 winButton.setFont(Jap);
                 winButton.setText(" Win ");
+                canWin = true;
                 winButton.setBounds(
                         (int)(this.getWidth()*0.85 - labelSize.stringWidth(" Win ") ),
                         (int)(this.getHeight() - this.getHeight()*0.12 - this.getHeight()/7 ),
@@ -1185,11 +1197,13 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     }
 
     public void switchTile(int tileIdndex) throws IOException, FontFormatException {
-        if(wallIndex==35) {
+        if(wallIndex>35) {
             endGame();
         }else
             System.out.println(" Okrutna");
             if (phase2) {
+                if (winForgo){winForgo=false;}
+                if (canWin){winForgo = true; canWin=false;}
                 drawNum++;
                 hand[tileIdndex] = TileWallArray.get(wallIndex);
                 lastTile = TileWallArray.get(wallIndex);
@@ -1197,6 +1211,9 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 wallIndex++;
                 layeredPane.remove(TileWall);
                 layeredPane.remove(handWall);
+                for (TalismanA tali : talismansActual ){
+                    if(tali!=null){tali.TakeEffect();}
+                }
                 updateHand();
                 updateWall();
                 layeredPane.repaint();
@@ -1227,20 +1244,33 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     }
 
     public void win(){
+        isWinning = true;
+        yekerMeister_mk_III.kans = KansArray;
         if (drawNum==1){
             yekerMeister_mk_III.firstDraw = true;
         }
         if (drawNum==35){
             yekerMeister_mk_III.lastDraw = true;
         }
+        canWin=false;
 
         Map<String,Object> bullshit = yekerMeister_mk_III.analyzeYakuFull(hand);
         fu = (int)bullshit.get("fu");
+        han =(int)bullshit.get("totalHan");
+
+        System.out.println("GTO "+han+" han");
+
+//        HERE USE TALISMANS
+        for (TalismanA tali : talismansActual ){
+            if(tali!=null){tali.TakeEffect();}
+        }
+
+        System.out.println("GTO "+han+" han");
 
         yekerMeister_mk_III.firstDraw = false;
         yekerMeister_mk_III.lastDraw = false;
 
-        isWinning = true;
+
 
         // <editor-fold desc="main panel">
         System.out.println("congrats");
@@ -1259,7 +1289,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         layeredPane.add(WinPanel,JLayeredPane.POPUP_LAYER);
         // </editor-fold>
 
-        points = points + (Integer) bullshit.get("points");
+        points = points + han*fu;
         Punktaż.setText("("+points+"/" + pointReq[levelIndex] + ")");
         Procentaż.setText("("+points/pointReq[levelIndex]*100 + "%)");
         Punktaż.setBounds(
@@ -1300,6 +1330,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             yakuHolder1.setBackground(new Color(103,255,22,255));
             yakusPanel.add(yakuHolder1);
 
+            // ... rest of your yaku content code (keep this the same)
             ImageIcon icon;
             Image scaledImage;
             Image image;
@@ -1377,13 +1408,13 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         JLabel calculations = new JLabel();
         calculations.setFont(Jap);
         calculations.setAlignmentX(Component.CENTER_ALIGNMENT);
-        calculations.setText(fu + " Fu x "+bullshit.get("totalHan")+"Han");
+        calculations.setText(fu + " Fu x "+han+"Han");
         showPanel.add(calculations);
 
         JLabel score = new JLabel();
         score.setFont(Jap2);
         score.setAlignmentX(Component.CENTER_ALIGNMENT);
-        score.setText(bullshit.get("points") +"");
+        score.setText(han*fu +"");
         showPanel.add(score);
 
         JButton close = new JButton("close");

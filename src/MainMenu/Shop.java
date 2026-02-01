@@ -351,6 +351,7 @@ public class Shop extends JPanel implements ActionListener {
         Main.mainWindow.game.deck.initializeDeck();
         try {
             Main.mainWindow.game.reloadPanel(new GameGame());
+            Main.mainWindow.game.locked=0;
             Main.mainWindow.game.currentLevel++;
         } catch (Exception ex) {
             throw new RuntimeException(ex);
@@ -417,6 +418,7 @@ public class Shop extends JPanel implements ActionListener {
         }
     }
     void reloadTalismans(){
+        int bargainCounter = Main.mainWindow.game.bargain;
         TalismanHolder.removeAll();
         for (int i =0;i<=4;i++){
             PacksHolder[i] = new JPanel();
@@ -471,13 +473,16 @@ public class Shop extends JPanel implements ActionListener {
 
             switch (talismanCategory){
                 case 0:
-                    buyTalisman[i].setText(" 5 Dong ");
+                    if (bargainCounter > 0) {buyTalisman[i].setText(" 3 Dong ");bargainCounter--;
+                    }else{buyTalisman[i].setText(" 5 Dong ");}
                     break;
                 case 1:
-                    buyTalisman[i].setText(" 10 Dong ");
+                    if (bargainCounter > 0) {buyTalisman[i].setText(" 5 Dong ");bargainCounter--;
+                    }else{buyTalisman[i].setText(" 10 Dong ");}
                     break;
                 case 2:
-                    buyTalisman[i].setText(" 15 Dong ");
+                    if (bargainCounter > 0) {buyTalisman[i].setText(" 8 Dong ");bargainCounter--;
+                    }else{buyTalisman[i].setText(" 15 Dong ");}
                     break;
             }
             buyTalisman[i].setOpaque(true);

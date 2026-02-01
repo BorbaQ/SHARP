@@ -10,7 +10,7 @@ public class TTest extends TalismanA {
     public TTest(Game gameContext, GameGame gameGameContext) {
         super(gameContext, gameGameContext);
         power = 1;
-        Finisher = true;
+        turner = false;
     }
 
     @Override
@@ -20,6 +20,10 @@ public class TTest extends TalismanA {
 
     @Override
     public void TakeEffect() {
-        gameGame.han *= (int) Math.pow(3,power);
+        if (gameGame!=null) {
+            if (gameGame.isWinning) {
+                gameGame.han *= 3 * power;
+            }
+        }
     }
 }

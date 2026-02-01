@@ -28,7 +28,7 @@ public class YekerMeister_mk_III {
                 temp[i] = hand[i];
             }
         }
-        if (kans.size() > 0){
+        if (!kans.isEmpty()){
             switch (kans.size()){
                 case 1:
                     temp[11] = kans.get(0);
@@ -152,10 +152,11 @@ public class YekerMeister_mk_III {
     List<Integer> findRegularWaitsFast(int[] hand) {
         List<Integer> waits = new ArrayList<>();
 
+        // try adding each possible tile
         for (int tile = 11; tile <= 49; tile++) {
             int suit = tile / 10, num = tile % 10;
-            if (num == 0 || num > 9) continue;
-            if (suit == 1 && tile > 17) continue;
+            if (num == 0 || num > 9) continue;     // skip invalid
+            if (suit == 1 && tile > 17) continue;  // honors only 11–17
 
             int[] test = Arrays.copyOf(hand, hand.length + 1);
             test[hand.length] = tile;
@@ -220,7 +221,8 @@ public class YekerMeister_mk_III {
 
     List<List<Integer>> TenpaiAllCombined(int[] currentHand) {
         List<List<Integer>> results = new ArrayList<>();
-
+        normaliseHand();
+        currentHand = hand;
         List<Integer> kokushiWaits = T13OrphansWaits(currentHand);
         boolean kokushi13Way = kokushiWaits.size() == 13;
 
@@ -260,7 +262,6 @@ public class YekerMeister_mk_III {
                 if (!(w13.size() == 1 && w13.get(0) == 0))
                     waitsSet.addAll(w13);
             }
-
             List<Integer> w7 = T7pairsWaits(sub);
             if (!(w7.size() == 1 && w7.get(0) == 0)) {
                 if (w7.size() == 1 && w7.get(0) == 1)
@@ -352,11 +353,9 @@ public class YekerMeister_mk_III {
     }
     Boolean YIpeikou(){
         for (int i = 0; i < hand.length-5; i++) {
-            if(hand[i]< 20){}else {
-                if (hand[i] == hand[i + 1]) {
-                    if (hand[i] + 1 == hand[i + 3] && hand[i] + 2 == hand[i + 5]) {
-                        return true;
-                    }
+            if (hand[i] == hand[i+1]){
+                if(hand[i]+1 == hand[i+3] && hand[i]+2 == hand[i+5]){
+                    return true;
                 }
             }
         }
@@ -448,12 +447,11 @@ public class YekerMeister_mk_III {
         for (int t : hand) {
             count.put(t, count.getOrDefault(t, 0) + 1);
         }
-//        here bitch talismans duplicate
-        int honourConunter =0;
+
         for (int t : hand) {
             int suit = t / 10;
             int num = t % 10;
-            if (suit == 1) {honourConunter++; continue;};
+            if (suit == 1) continue;
             if (num >= 4 && num <= 6) return false;
             int c = count.get(t);
             if (c == 2) pairCount++;
@@ -466,7 +464,6 @@ public class YekerMeister_mk_III {
             if (num == 9) {if (!count.containsKey(t - 1) && !count.containsKey(t - 2)) return false;}
             if (c == 1) return false;
         }
-        if (honourConunter==hand.length) return false;
 
         return true;
     }
@@ -733,7 +730,7 @@ public class YekerMeister_mk_III {
             if (count.getOrDefault(w, 0) >= 3)
                 triplet++;
             else
-                return false;
+                return false; // any missing or weak wind → no yakuman
         }
 
         return triplet == 4;
@@ -742,10 +739,12 @@ public class YekerMeister_mk_III {
 //    </editor-fold>
 
     Map<String,Object> analyzeYakuFull(int[] currentHand) {
-        normaliseHand();
+
+        System.out.println(" ręka przed sprawdzaniem 1 "+Arrays.toString(hand));
         int[] savedHand = this.hand;
         this.hand = Arrays.copyOf(currentHand, currentHand.length);
-
+        normaliseHand();
+        System.out.println(" ręka przed sprawdzaniem 2 "+ Arrays.toString(hand));
 
         List<String> detected = new ArrayList<>();
         int totalHan = 0;
@@ -832,6 +831,8 @@ public class YekerMeister_mk_III {
 
         this.hand = savedHand;
 
+        System.out.println(" pies ci matke " + kans);
+
         Map<String,Object> out = new HashMap<>();
         out.put("yakuList", detected);
         out.put("totalHan", totalHan);
@@ -843,10 +844,10 @@ public class YekerMeister_mk_III {
     public int estimateFuSimplified(int[] currentHand) {
         int fu = 0;
         for (int i = 0; i < currentHand.length;i++){
-            if (currentHand[i]/10==1){
-                fu+=10;
-            }else{
-                fu+=5;
+            for (int j =0;j<Deck.uniqueTiles.length;j++){
+                if (currentHand[i] == Deck.uniqueTiles[j]){
+                    fu+=Main.mainWindow.game.fuval[j];
+                }
             }
         }
         return fu;

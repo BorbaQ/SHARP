@@ -7,13 +7,13 @@ public abstract class TalismanA {
     public Game game;
     public GameGame gameGame;
     public Boolean upgraded;
-    public Boolean Finisher;
+    public boolean initial = false;
     public int power = -2;
     protected TalismanA(Game gameContext, GameGame gameGameContext) {
         game = gameContext;
         gameGame = gameGameContext;
-        power = 10;
-
+        power = 1;
+        upgraded = false;
     }
     abstract public void handleUpgrade();
 
