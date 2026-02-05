@@ -16,7 +16,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
     YekerMeister_mk_III yekerMeister_mk_III = new YekerMeister_mk_III();
 
-    int[] hand = new int[14];
+    public int[] hand = new int[14];
     Random rand = new Random();
     JLayeredPane layeredPane;
     Font Jap;
@@ -37,9 +37,11 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     double points = 28;
     int levelIndex= Main.mainWindow.game.currentLevel;
     int Kans =0;
-    int switches = 3;
-    int wallIndex =0;
+    public int switches = 3;
+    public int wallIndex =0;
     public int lastTile =0;
+    public int discard =0;
+    public int discardIndex =0;
     public int fu;
     public int han;
     public Boolean isWinning = false;
@@ -47,7 +49,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     int drawNum = 0;
     ArrayList<Integer> KansArray = new ArrayList<>();
     ArrayList<Integer> potentialKansArray = new ArrayList<>();
-    ArrayList<Integer> TileWallArray = new ArrayList<>();
+    public ArrayList<Integer> TileWallArray = new ArrayList<>();
     ArrayList<Integer> selectedArray = new ArrayList<>();
     TalismanA[] talismansActual = new TalismanA[8];
     Long[] pointReq = {
@@ -63,6 +65,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     ArrayList<JLabel> DoraLabels = new ArrayList<>();
     ArrayList<Image> DoraimgsOriginal = new ArrayList<>();
     Timer timer;
+    public List<List<Integer>> tenpai = new ArrayList<>();
 
 
     public boolean canWin = false;
@@ -646,7 +649,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         TileWall.setLayout(new BoxLayout(TileWall, BoxLayout.Y_AXIS));
 
 
-
         int tileIdndex = 0;
         for (int i=0; i < 4; i++) {
             JPanel TileWallHolder = new JPanel();
@@ -671,20 +673,26 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 Boolean isOpen = false;
                 Boolean isSoul = false;
                 Boolean IDCA = false;
+                boolean isLocked = false;
+
+                if (tileIdndex >= 36-locked) {isLocked = true;}
+
                 if ((TileWallArray.get(tileIdndex) !=null)){
                     IDCA = true;
                 }
 
                 for (int k = 0;k< openOnes.length;k++) {
-                    if (openOnes[k] == tileIdndex){
+                    if (openOnes[k] == tileIdndex) {
                         isOpen = true;
+                        break;
                     }
 
                 }
                 if (!Main.mainWindow.game.SoulTiles.isEmpty()){
                     for (int k = 0;k<Main.mainWindow.game.SoulTiles.size();k++) {
-                        if (Main.mainWindow.game.SoulTiles.get(k) == tileIdndex){
+                        if (Objects.equals(Main.mainWindow.game.SoulTiles.get(k), TileWallArray.get(tileIdndex))) {
                             isSoul = true;
+                            break;
                         }
                     }
                 }
@@ -699,7 +707,8 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     icon2 = new ImageIcon("src/imgs/Regular/");
                     Image image2 = icon2.getImage();
                     scaledImage2 = image2.getScaledInstance(tileWidth, tileHeight, Image.SCALE_SMOOTH);
-                }else if (isOpen || tileIdndex==wallIndex){
+
+                }else if (isOpen || tileIdndex==wallIndex || isLocked){
                     icon = new ImageIcon("src/imgs/Regular/" + interpretTile(TileWallArray.get(tileIdndex)));
                     Image image = icon.getImage();
                     scaledImage = image.getScaledInstance(tileWidth, tileHeight, Image.SCALE_SMOOTH);
@@ -727,6 +736,29 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 if (isSoul && isOpen && IDCA){
                     tileImg.setBackground(new Color(255, 255, 0,150));
                     tileImg.setOpaque(true);
+                }
+
+                Boolean isDora = false;
+                if (!Main.mainWindow.game.DoraTiles.isEmpty()) {
+                    for (int k = 0; k < Main.mainWindow.game.DoraTiles.size(); k++) {
+                        if (Objects.equals(Main.mainWindow.game.DoraTiles.get(k), TileWallArray.get(tileIdndex))) {
+                            System.out.println("found two "+ TileWallArray.get(tileIdndex)+isOpen);
+                            isDora = true;
+                            break;
+                        }
+                    }
+                }
+                if (isDora && (isOpen || tileIdndex==wallIndex)) {
+                    System.out.println("found two sequel");
+                    TileWallHolder2.add(new PisarzJavy("Dora", this.getWidth(), this.getHeight()));
+                    layeredPane.revalidate();
+                    layeredPane.repaint();
+                }
+                if (isLocked) {
+                    System.out.println("get locked up");
+                    TileWallHolder2.add(new LatoIJava(this.getWidth(), this.getHeight()));
+                    layeredPane.revalidate();
+                    layeredPane.repaint();
                 }
 
                 JLabel tileImg2 = new JLabel();
@@ -759,7 +791,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
         hand = Main.mainWindow.game.Sorthand(hand);
         yekerMeister_mk_III.hand = hand;
-        List<List<Integer>> tenpai = yekerMeister_mk_III.TenpaiAllCombined(yekerMeister_mk_III.hand);
+        tenpai = yekerMeister_mk_III.TenpaiAllCombined(yekerMeister_mk_III.hand);
         System.out.println("Yeker "+tenpai);
         handWall = new JPanel();
         int tileHeight = (int)(this.getHeight()*0.1 );
@@ -1197,7 +1229,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     }
 
     public void switchTile(int tileIdndex) throws IOException, FontFormatException {
-        if(wallIndex>35) {
+        if(wallIndex>35-locked) {
             endGame();
         }else
             System.out.println(" Okrutna");
@@ -1205,6 +1237,8 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 if (winForgo){winForgo=false;}
                 if (canWin){winForgo = true; canWin=false;}
                 drawNum++;
+                discard = hand[tileIdndex];
+                discardIndex = tileIdndex;
                 hand[tileIdndex] = TileWallArray.get(wallIndex);
                 lastTile = TileWallArray.get(wallIndex);
                 TileWallArray.set(wallIndex, null);
@@ -1249,7 +1283,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         if (drawNum==1){
             yekerMeister_mk_III.firstDraw = true;
         }
-        if (drawNum==35){
+        if (drawNum==35-locked){
             yekerMeister_mk_III.lastDraw = true;
         }
         canWin=false;
@@ -1452,6 +1486,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
 
         // </editor-fold>
+
 
         layeredPane.revalidate();
         layeredPane.repaint();

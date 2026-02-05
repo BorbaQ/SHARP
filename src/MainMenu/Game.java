@@ -1,9 +1,6 @@
 package MainMenu;
 
-import MainMenu.Talismans.T0_1;
-import MainMenu.Talismans.T0_3;
-import MainMenu.Talismans.TTest;
-import MainMenu.Talismans.TalismanA;
+import MainMenu.Talismans.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +19,13 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
         new HashMap<>(Map.of(
                 "1-36", TTest.class,
                 "0-0", T0_1.class,
-                "0-2", T0_3.class
+                "0-2", T0_3.class,
+                "0-4",T0_5.class,
+                "0-6", T0_7.class,
+                "0-8", T0_9.class,
+                "0-10", T0_11.class,
+                "0-12", T0_13.class,
+                "0-14", T0_15.class
         ));
 
     public TalismanA[] talismansAct = new TalismanA[8];
@@ -72,6 +75,7 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
 
     public boolean isShop = false;
     public int bargain = 0;
+    public int freeRefresh =0;
 
     public int locked = 0;
 
@@ -91,7 +95,8 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
         talismansAct[0] = talismansAlles.get("0-6").getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);
         talismans[1] = new int[] {1,36};
         talismansAct[1] = talismansAlles.get("1-36").getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);
-        talismans[2] = null;
+        talismans[2] = new int[] {0,14};
+        talismansAct[2] = talismansAlles.get("0-14").getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);
         talismans[3] = null;
         talismans[4] = null;
         talismans[5] = null;
@@ -177,12 +182,12 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
         if (e.getSource() == startGameButton) {
             layeredPane.remove(startGameButton);
             try {
-                shop = new Shop();
                 isShop = true;
                 bargain = 0;
                 for (TalismanA tali : talismansAct){
                     if (tali!=null){tali.TakeEffect();}
                 }
+                shop = new Shop();
                 currentGamePanel = shop;
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
@@ -632,6 +637,7 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
         for (int i =0; i < 36;i++){
             list.add(deck.getRandomTile());
         }
+        list.add(null);
         return list;
     }
     public int[] initialisationOfZeHandZe(){

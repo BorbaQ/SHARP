@@ -39,7 +39,8 @@ public class Shop extends JPanel implements ActionListener {
             this.setBounds(0,0,Main.mainWindow.getWidth(),Main.mainWindow.getHeight());
         }
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-        Main.mainWindow.game.Money += 100000000;
+
+        if(Main.mainWindow.game.freeRefresh >0){RefreshCost=0;Main.mainWindow.game.freeRefresh--;}
 
         Main.mainWindow.game.Money += Main.mainWindow.game.currentLevel*5;
 
@@ -341,7 +342,9 @@ public class Shop extends JPanel implements ActionListener {
             if (Main.mainWindow.game.Money >= RefreshCost) {
                 reloadTalismans();
                 Main.mainWindow.game.Money-=RefreshCost;
-                RefreshCost+=5;;
+                if (Main.mainWindow.game.freeRefresh<=0) {
+                    RefreshCost += 5;
+                }else{Main.mainWindow.game.freeRefresh--;}
                 RefreshButton.setText(" Refresh "+RefreshCost+" Dong ");
                 moneyLabel.setText(" Money: "+Main.mainWindow.game.Money+" Dong ");
             }
