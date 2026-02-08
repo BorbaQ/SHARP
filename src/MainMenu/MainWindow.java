@@ -18,7 +18,7 @@ public class MainWindow extends JFrame implements ActionListener {
         this.setLayout(null);
         this.setResizable(false);
         this.setResizable(false);
-        this.setIconImage(new ImageIcon("src/imgs/blowMe.png").getImage());
+        this.setIconImage(new ImageIcon("src/imgs/randomBS/blowMe.png").getImage());
 //      IMPORTANT IMPORTANT!!!!! CHANGE TO MENU AFTER DEVELEOPING GAME
         currentPanel = new Menu();
         this.add(currentPanel);

@@ -125,7 +125,7 @@ public Map<String, Class<? extends TalismanA>> talismansAlles =
         this.setVisible(true);
     }
 
-    ImageIcon bg = new ImageIcon("src/imgs/Game.jpg");
+    ImageIcon bg = new ImageIcon("src/imgs/randomBS/Game.jpg");
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

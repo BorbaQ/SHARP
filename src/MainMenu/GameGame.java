@@ -36,7 +36,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     JButton winButton;
     double points = 28;
     int levelIndex= Main.mainWindow.game.currentLevel;
-    int Kans =0;
+    public int Kans =0;
     public int switches = 3;
     public int wallIndex =0;
     public int lastTile =0;
@@ -47,7 +47,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     public Boolean isWinning = false;
     Boolean phase2 = false;
     int drawNum = 0;
-    ArrayList<Integer> KansArray = new ArrayList<>();
+    public ArrayList<Integer> KansArray = new ArrayList<>();
     ArrayList<Integer> potentialKansArray = new ArrayList<>();
     public ArrayList<Integer> TileWallArray = new ArrayList<>();
     ArrayList<Integer> selectedArray = new ArrayList<>();
@@ -64,6 +64,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     Long pointsReqCurr =0L;
     ArrayList<JLabel> DoraLabels = new ArrayList<>();
     ArrayList<Image> DoraimgsOriginal = new ArrayList<>();
+    public List<String> yakusS = new ArrayList<>();
     Timer timer;
     public List<List<Integer>> tenpai = new ArrayList<>();
 
@@ -272,7 +273,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         layeredPane.add(Skip,JLayeredPane.DEFAULT_LAYER);
         //        </editor-fold>
     }
-    ImageIcon bg = new ImageIcon("src/imgs/Game.jpg");
+    ImageIcon bg = new ImageIcon("src/imgs/randomBS/Game.jpg");
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -1345,6 +1346,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
         // <editor-fold desc="Yakus panel">
         List<String> yakus = (List<String>) bullshit.get("yakuList");
+        yakusS = yakus;
         System.out.println(yakus);
 
         JPanel yakusPanel = new JPanel();

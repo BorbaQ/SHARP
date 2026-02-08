@@ -24,7 +24,7 @@ public class Menu extends JPanel implements ActionListener {
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
 
-        JLabel BgImage = new JLabel(new ImageIcon("src/imgs/mainMenu2.png"));
+        JLabel BgImage = new JLabel(new ImageIcon("src/imgs/randomBS/mainMenu2.png"));
         BgImage.setBounds(0,0,this.getWidth(),this.getHeight());
 
         Font Jap = Font.createFont(Font.TRUETYPE_FONT,new File("src/Fonts/YOZAKURA-Regular.otf"));
@@ -134,7 +134,7 @@ public class Menu extends JPanel implements ActionListener {
             }
         }
     }
-    ImageIcon bg = new ImageIcon("src/imgs/mainMenu2.png");
+    ImageIcon bg = new ImageIcon("src/imgs/randomBS/mainMenu2.png");
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
