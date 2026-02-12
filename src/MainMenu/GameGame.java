@@ -781,10 +781,15 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     tileImg.setOpaque(true);
                 }
 
-                Boolean isDora = false;
+                boolean isDora = false;
                 if (!Main.mainWindow.game.DoraTiles.isEmpty()) {
                     for (int k = 0; k < Main.mainWindow.game.DoraTiles.size(); k++) {
-                        if (Objects.equals(Main.mainWindow.game.DoraTiles.get(k), TileWallArray.get(tileIdndex))) {
+                        if (Main.mainWindow.game.DoraTiles.get(k)%10==9) {
+                            if (Objects.equals((Main.mainWindow.game.DoraTiles.get(k)/10*10)+1, TileWallArray.get(tileIdndex))){
+                                isDora = true;
+                                break;
+                            }
+                        }else if (Objects.equals(Main.mainWindow.game.DoraTiles.get(k)+1, TileWallArray.get(tileIdndex))) {
                             System.out.println("found two "+ TileWallArray.get(tileIdndex)+isOpen);
                             isDora = true;
                             break;
@@ -867,9 +872,14 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 Boolean isDora = false;
                 if (!Main.mainWindow.game.DoraTiles.isEmpty()) {
                     for (int k = 0; k < Main.mainWindow.game.DoraTiles.size(); k++) {
-                        if (Main.mainWindow.game.DoraTiles.get(k) == hand[tileIdndex]) {
-                            System.out.println("found one");
+                        if (Main.mainWindow.game.DoraTiles.get(k)%10==9) {
+                            if (Objects.equals((Main.mainWindow.game.DoraTiles.get(k)/10*10)+1, hand[tileIdndex])){
+                                isDora = true;
+                                break;
+                            }
+                        }else if (Objects.equals(Main.mainWindow.game.DoraTiles.get(k)+1, hand[tileIdndex])) {
                             isDora = true;
+                            break;
                         }
                     }
                 }
@@ -1335,6 +1345,30 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         Map<String,Object> bullshit = yekerMeister_mk_III.analyzeYakuFull(hand);
         fu = (int)bullshit.get("fu");
         han =(int)bullshit.get("totalHan");
+        for (int tileIdndex =0; tileIdndex < hand.length; tileIdndex++) {
+            for (int k = 0; k < Main.mainWindow.game.DoraTiles.size(); k++) {
+                if (Main.mainWindow.game.DoraTiles.get(k) % 10 == 9) {
+                    if (Objects.equals((Main.mainWindow.game.DoraTiles.get(k) / 10 * 10) + 1, hand[tileIdndex])) {
+                        han++;
+                    }
+                } else if (Objects.equals(Main.mainWindow.game.DoraTiles.get(k) + 1, hand[tileIdndex])) {
+                    han++;
+                }
+            }
+        }
+        for (int kantile : KansArray) {
+            for (int k = 0; k < Main.mainWindow.game.DoraTiles.size(); k++) {
+                if (Main.mainWindow.game.DoraTiles.get(k) % 10 == 9) {
+                    if (Objects.equals((Main.mainWindow.game.DoraTiles.get(k) / 10 * 10) + 1, kantile)) {
+                        han++;han++;
+                        han++;han++;
+                    }
+                } else if (Objects.equals(Main.mainWindow.game.DoraTiles.get(k) + 1, kantile)) {
+                    han++;han++;
+                    han++;han++;
+                }
+            }
+        }
 
         System.out.println("GTO "+han+" han");
 

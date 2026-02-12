@@ -452,7 +452,7 @@ public class Shop extends JPanel implements ActionListener {
                     icon = new ImageIcon("src/imgs/categories/rare.png");
                     break;
                 case 2:
-                    icon = new ImageIcon("src`/imgs/categories/legendary.png");
+                    icon = new ImageIcon("src/imgs/categories/legendary.png");
                     break;
             }
 
