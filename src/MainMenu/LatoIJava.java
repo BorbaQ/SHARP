@@ -13,7 +13,7 @@ public class LatoIJava extends JPanel {
         int tileWidth = (int)( (double) (tileHeight * 3) /4 +5);
         width = tileWidth;
         height = tileHeight;
-        chainImage = new ImageIcon("src/imgs/chains.png").getImage();
+        chainImage = new ImageIcon("src/imgs/randomBG/chains.png").getImage();
         System.out.println(chainImage + " ughm what the smigma");
         System.out.println(
                 chainImage.getWidth(null) + " x " + chainImage.getHeight(null)

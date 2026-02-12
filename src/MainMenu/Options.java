@@ -125,7 +125,7 @@ public class Options extends JPanel implements ActionListener {
 
         this.setVisible(true);
     }
-    ImageIcon bg = new ImageIcon("src/imgs/loading_CG.jpg");
+    ImageIcon bg = new ImageIcon("src/imgs/randomBS/loading_CG.jpg");
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

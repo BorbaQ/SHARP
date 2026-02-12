@@ -270,7 +270,7 @@ public class Shop extends JPanel implements ActionListener {
 
         this.setVisible(true);
     }
-    ImageIcon bg = new ImageIcon("src/imgs/Shop.jpg");
+    ImageIcon bg = new ImageIcon("src/imgs/randomBS/Shop.jpg");
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -352,6 +352,7 @@ public class Shop extends JPanel implements ActionListener {
         if (e.getSource()==Nextlevel) {
         System.out.println("Dupa Dupsko");
         Main.mainWindow.game.deck.initializeDeck();
+        Main.mainWindow.game.moneySpentOnReloads += (5+RefreshCost)*((RefreshCost/5)-1)/2;
         try {
             Main.mainWindow.game.reloadPanel(new GameGame());
             Main.mainWindow.game.locked=0;
@@ -442,7 +443,7 @@ public class Shop extends JPanel implements ActionListener {
             Packs[i].setPreferredSize(new Dimension((int)((this.getWidth()*0.8)*0.7*0.2),(int)((this.getHeight()*0.5*0.7)- (double) this.getHeight() /20)+10));
             int talismanCategory = getTalismanCategory();
             System.out.println(talismanCategory);
-            ImageIcon icon = new ImageIcon("src/imgs/blowMe.jpeg");
+            ImageIcon icon = new ImageIcon("src/imgs/randomBS/blowMe.jpeg");
             switch (talismanCategory) {
                 case 0:
                     icon = new ImageIcon("src/imgs/categories/common.png");
@@ -451,7 +452,7 @@ public class Shop extends JPanel implements ActionListener {
                     icon = new ImageIcon("src/imgs/categories/rare.png");
                     break;
                 case 2:
-                    icon = new ImageIcon("src/imgs/categories/legendary.png");
+                    icon = new ImageIcon("src`/imgs/categories/legendary.png");
                     break;
             }
 

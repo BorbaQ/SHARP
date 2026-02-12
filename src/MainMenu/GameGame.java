@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.List;
 
@@ -60,13 +61,14 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 //        EX
             1000000L,10000000L,1000000000L,1000000000000L,1000000000000000L,1000000000000000000L,9223372036854775807L
     };
-    int[] openOnes;
+    public int[] openOnes;
     Long pointsReqCurr =0L;
     ArrayList<JLabel> DoraLabels = new ArrayList<>();
     ArrayList<Image> DoraimgsOriginal = new ArrayList<>();
     public List<String> yakusS = new ArrayList<>();
     Timer timer;
     public List<List<Integer>> tenpai = new ArrayList<>();
+    JScrollPane doraScroll;
 
 
     public boolean canWin = false;
@@ -75,9 +77,36 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     public int locked =0;
 
 //</editor-fold>
-    GameGame() throws IOException, FontFormatException {
+    GameGame() throws IOException, FontFormatException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
         points = 0;
+
+        boolean sc1 = false;
+        boolean sc2 = false;
+        boolean sc3 = false;
+        boolean sc4 = false;
+        for (int[] tali : Main.mainWindow.game.talismans){
+            if (Arrays.equals(tali, new int[]{0, 56}))sc1=true;
+            if (Arrays.equals(tali, new int[]{0, 58}))sc2=true;
+            if (Arrays.equals(tali, new int[]{0, 60}))sc3=true;
+            if (Arrays.equals(tali, new int[]{0, 62}))sc4=true;
+        }
+        if (sc1 && sc2 && sc3 && sc4){
+            int indexForNewOne =-5;
+            int idkAtThisPointAnythingWillPass = 0;
+            for (int[] tali : Main.mainWindow.game.talismans){
+                if (Arrays.equals(tali, new int[]{0, 56})){Main.mainWindow.game.talismans[idkAtThisPointAnythingWillPass]=null; indexForNewOne = idkAtThisPointAnythingWillPass;Main.mainWindow.game.talismansAct[idkAtThisPointAnythingWillPass]=null;}
+                if (Arrays.equals(tali, new int[]{0, 58})){Main.mainWindow.game.talismans[idkAtThisPointAnythingWillPass]=null;Main.mainWindow.game.talismansAct[idkAtThisPointAnythingWillPass]=null;}
+                if (Arrays.equals(tali, new int[]{0, 60}))Main.mainWindow.game.talismans[idkAtThisPointAnythingWillPass]=null;Main.mainWindow.game.talismansAct[idkAtThisPointAnythingWillPass]=null;
+                if (Arrays.equals(tali, new int[]{0, 62}))Main.mainWindow.game.talismans[idkAtThisPointAnythingWillPass]=null;Main.mainWindow.game.talismansAct[idkAtThisPointAnythingWillPass]=null;
+                idkAtThisPointAnythingWillPass++;
+            }
+            if (indexForNewOne != -5){
+                Main.mainWindow.game.talismans[indexForNewOne]=new int[]{0,22};
+                Main.mainWindow.game.talismansAct[indexForNewOne] =Game.talismansAlles.get("0-22").getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);;
+            }
+
+        }
 
         //    <editor-fold desc="Initialization">
 
@@ -190,7 +219,11 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         layeredPane.add(ShowTalismans,JLayeredPane.DEFAULT_LAYER);
         //        </editor-fold>
         //    <editor-fold desc="Dora Tiles">
+
+        Main.mainWindow.game.DoraNum--;
+        Main.mainWindow.game.addDoraTiles();
         addDoras();
+        Main.mainWindow.game.DoraNum++;
         //        </editor-fold>
         //        <editor-fold desc="KanDesu">
         addKans(0);
@@ -479,13 +512,14 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         return returnString;
     }
     public void addDoras(){
+
         DoraPanel = new JPanel();
         DoraPanel = new JPanel();
         DoraPanel.setLayout(new BoxLayout(DoraPanel,BoxLayout.X_AXIS));
         int Doraheight = (int)(this.getHeight()*0.1 -6);
         int Dorawidth = (int)(Doraheight*0.75 );
 
-
+        Main.mainWindow.game.DoraTiles.add(Main.mainWindow.game.deck.getRandomTile());
 
         DoraPanel.setBounds(
                 (int)(this.getWidth()/40),
@@ -494,7 +528,12 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 (int)(this.getHeight()*0.1 +6));
         DoraPanel.setOpaque(true);
         DoraPanel.setBackground(new Color(200, 165, 60, 200));
-        JScrollPane doraScroll = new JScrollPane(
+
+        if (doraScroll != null) {
+            layeredPane.remove(doraScroll);
+        }
+
+        doraScroll = new JScrollPane(
                 DoraPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_NEVER,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED
@@ -507,14 +546,17 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         );
         layeredPane.add(doraScroll, JLayeredPane.DEFAULT_LAYER);
 
-        Main.mainWindow.game.addDoraTiles();
+
         DoraPanel.add(Box.createHorizontalStrut((int)(5)));
+
         for(int i = 0; i < Main.mainWindow.game.DoraTiles.size(); i++){
+
             int height = Doraheight;
             int width = (int)(height*0.75 );
             DoraPanel.add(Box.createHorizontalStrut((int)(1)));
 
             ArrayList<Integer> doras = Main.mainWindow.game.DoraTiles;
+            System.out.println("kwutwas 123 "+doras.get(i));
 
             ImageIcon icon = new ImageIcon("src/imgs/Regular/"+interpretTile(doras.get(i)));
             Image image = icon.getImage();
@@ -1235,6 +1277,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         }else
             System.out.println(" Okrutna");
             if (phase2) {
+                addDoras();
                 if (winForgo){winForgo=false;}
                 if (canWin){winForgo = true; canWin=false;}
                 drawNum++;
@@ -1296,7 +1339,10 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         System.out.println("GTO "+han+" han");
 
 //        HERE USE TALISMANS
+        int taliIndex =0;
         for (TalismanA tali : talismansActual ){
+            System.out.println("tallisman index "+taliIndex);
+            taliIndex++;
             if(tali!=null){tali.TakeEffect();}
         }
 

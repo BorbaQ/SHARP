@@ -25,16 +25,21 @@ public class T0_15 extends TalismanA{
             if (gameGame.isWinning){
                 if (effectIg){
                     for(int i = gameGame.locked; i > 0; i--){
-                        if (gameGame.TileWallArray.get(gameGame.TileWallArray.size()-i) > 100){
-                            if (gameGame.TileWallArray.get(gameGame.TileWallArray.size()-i) / 10 != 3){
+                        if (gameGame.TileWallArray.get(gameGame.TileWallArray.size()-i)!=null) {
+                            if (gameGame.TileWallArray.get(gameGame.TileWallArray.size() - i) > 100) {
+                                if (gameGame.TileWallArray.get(gameGame.TileWallArray.size() - i) / 10 != 3) {
+                                    continue;
+                                }
+                            }
+
+                            if (gameGame.TileWallArray.get(gameGame.TileWallArray.size() - i) / 10 != 3) {
                                 continue;
                             }
-                        }
-                        if (gameGame.TileWallArray.get(gameGame.TileWallArray.size()-i) / 10 != 3){continue;}
-                        if (!upgraded) {
-                            game.Money += 3;
-                        }else{
-                            game.Money += 5;
+                            if (!upgraded) {
+                                game.Money += 3;
+                            } else {
+                                game.Money += 5;
+                            }
                         }
 
                     }

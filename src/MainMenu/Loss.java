@@ -70,7 +70,7 @@ public class Loss extends JPanel implements ActionListener {
 
         this.setVisible(true);
     }
-    ImageIcon bg = new ImageIcon("src/imgs/Loss.jpg");
+    ImageIcon bg = new ImageIcon("src/imgs/randomBS/Loss.jpg");
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

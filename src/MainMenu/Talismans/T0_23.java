@@ -28,8 +28,9 @@ public class T0_23 extends TalismanA{
             }
             if (gameGame.isWinning){
                 gameGame.fu += power;
+                if(upgraded){gameGame.fu+=640;}else{ gameGame.fu+=320;}
                 if (gameGame.wallIndex <=12){if(!upgraded){gameGame.han+=12;}else{gameGame.han+=24;}}
-                if (gameGame.wallIndex>=24){gameGame.han+=8;}else{gameGame.han+=16;}
+                if (gameGame.wallIndex>=24){if (upgraded){gameGame.han+=16;}else{gameGame.han+=8;}}
             }
         }
     }
