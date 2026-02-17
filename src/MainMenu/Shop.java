@@ -29,6 +29,8 @@ public class Shop extends JPanel implements ActionListener {
     JButton[] buyTalisman = new JButton[5];
     JPanel[] PacksHolder = new JPanel[5];
 
+    public int scalp =0;
+
     int RefreshCost = 5;
     Boolean minNor= false;
 
@@ -39,6 +41,9 @@ public class Shop extends JPanel implements ActionListener {
             this.setBounds(0,0,Main.mainWindow.getWidth(),Main.mainWindow.getHeight());
         }
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+
+        scalp = Main.mainWindow.game.scalp;
+        Main.mainWindow.game.scalp =0;
 
         if(Main.mainWindow.game.freeRefresh >0){RefreshCost=0;Main.mainWindow.game.freeRefresh--;}
 
@@ -442,6 +447,15 @@ public class Shop extends JPanel implements ActionListener {
             Packs[i].setBackground(new Color(255,255,255,0));
             Packs[i].setPreferredSize(new Dimension((int)((this.getWidth()*0.8)*0.7*0.2),(int)((this.getHeight()*0.5*0.7)- (double) this.getHeight() /20)+10));
             int talismanCategory = getTalismanCategory();
+
+            boolean someflag = false;
+
+            if (scalp > 0){
+                talismanCategory = 2;
+                someflag = true;
+                scalp --;
+            }
+
             System.out.println(talismanCategory);
             ImageIcon icon = new ImageIcon("src/imgs/randomBS/blowMe.jpeg");
             switch (talismanCategory) {
@@ -471,6 +485,7 @@ public class Shop extends JPanel implements ActionListener {
             label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
             buyTalisman[i] = new JButton();
+
             buyTalisman[i].setActionCommand("b" + i);
 
             buyTalisman[i].setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -485,6 +500,11 @@ public class Shop extends JPanel implements ActionListener {
                     }else{buyTalisman[i].setText(" 10 Dong ");}
                     break;
                 case 2:
+                    if (someflag){
+                        buyTalisman[i].setText(" 30 Dong ");
+                        someflag = false;
+                        break;
+                    }
                     if (bargainCounter > 0) {buyTalisman[i].setText(" 8 Dong ");bargainCounter--;
                     }else{buyTalisman[i].setText(" 15 Dong ");}
                     break;

@@ -75,6 +75,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     public boolean winForgo = false;
     public boolean initialization = true;
     public int locked =0;
+    public int openBonus = 0;
 
 //</editor-fold>
     GameGame() throws IOException, FontFormatException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
@@ -231,7 +232,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         //        <editor-fold desc="TILE WALL">
         TileWallArray = Main.mainWindow.game.ThrumpSim();
 
-        openOnes = new int[Main.mainWindow.game.OpenTiles];
+        openOnes = new int[Main.mainWindow.game.OpenTiles+openBonus];
         ArrayList<Integer> wallPositions = new ArrayList<>();
         for (int i =0;i<36;i++){
             wallPositions.add(i,i);
@@ -1446,7 +1447,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             yakuHolder1.setBackground(new Color(103,255,22,255));
             yakusPanel.add(yakuHolder1);
 
-            // ... rest of your yaku content code (keep this the same)
             ImageIcon icon;
             Image scaledImage;
             Image image;
@@ -1578,6 +1578,14 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 //        TODO YOU LAZY FUCK ADD FAIL/WIN SCREEN n CHECKING WINS
         System.out.println("TO JEST JUSZ KONIEC NIE MA JUSZ NIC");
         if(points < pointReq[levelIndex]){
+            int i =0;
+            for (int[] tali: Main.mainWindow.game.talismans){
+                if (tali[1]==32){
+                    Main.mainWindow.game.talismans[i]=null;
+                    Main.mainWindow.game.talismansAct[i]=null;
+                }
+                i++;
+            }
             System.out.println("TO JEST JUSZ KONIEC NIE MA JUSZ NIC Zwei");
             Main.mainWindow.game.reloadPanel(new Loss());
             return;
