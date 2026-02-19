@@ -5,6 +5,7 @@ import MainMenu.GameGame;
 
 import java.awt.*;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 public abstract class TalismanA {
     public Game game;
@@ -23,5 +24,5 @@ public abstract class TalismanA {
     protected TalismanA() {
     }
 
-    abstract public void TakeEffect() throws IOException, FontFormatException;
+    abstract public void TakeEffect() throws IOException, FontFormatException,NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
 }

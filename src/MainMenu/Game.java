@@ -26,10 +26,20 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                 Map.entry("0-48", T0_49.class), Map.entry("0-50", T0_51.class), Map.entry("0-52", T0_53.class), Map.entry("0-54", T0_55.class), Map.entry("0-56", T0_57.class),
                 Map.entry("0-58", T0_59.class), Map.entry("0-60", T0_61.class), Map.entry("0-62", T0_63.class), Map.entry("0-64", T0_65.class), Map.entry("0-66", T0_67.class),
                 Map.entry("0-68", T0_69.class), Map.entry("0-70", T0_71.class), Map.entry("0-72", T0_73.class), Map.entry("0-74", T0_75.class), Map.entry("0-76", T0_77.class),
-                Map.entry("0-78", T0_79.class), Map.entry("0-80", T0_81.class), Map.entry("0-82", T0_83.class)
+                Map.entry("0-78", T0_79.class), Map.entry("0-80", T0_81.class), Map.entry("0-82", T0_83.class),
 //                </editor-fold>
 //                <editor-fold desc="rare streetwalkers">
-
+                Map.entry("1-0", T0_83.class),  Map.entry("1-2", T0_83.class),  Map.entry("1-4", T0_83.class),  Map.entry("1-6", T0_83.class),  Map.entry("1-8", T0_83.class),
+                Map.entry("1-10", T0_83.class), Map.entry("1-12", T0_83.class), Map.entry("1-14", T0_83.class), Map.entry("1-16", T0_83.class), Map.entry("1-18", T0_83.class),
+                Map.entry("1-20", T0_83.class), Map.entry("1-22", T0_83.class), Map.entry("1-24", T0_83.class), Map.entry("1-26", T0_83.class), Map.entry("1-28", T0_83.class),
+                Map.entry("1-30", T0_83.class), Map.entry("1-32", T0_83.class), Map.entry("1-34", T0_83.class),                                    Map.entry("1-38", T0_83.class),
+                Map.entry("1-40", T0_83.class), Map.entry("1-42", T0_83.class), Map.entry("1-44", T0_83.class), Map.entry("1-46", T0_83.class), Map.entry("1-48", T0_83.class),
+                Map.entry("1-50", T0_83.class), Map.entry("1-52", T0_83.class), Map.entry("1-54", T0_83.class), Map.entry("1-56", T0_83.class), Map.entry("1-58", T0_83.class),
+                Map.entry("1-60", T0_83.class), Map.entry("1-62", T0_83.class), Map.entry("1-64", T0_83.class), Map.entry("1-66", T0_83.class), Map.entry("1-68", T0_83.class),
+                Map.entry("1-70", T0_83.class), Map.entry("1-72", T0_83.class), Map.entry("1-74", T0_83.class), Map.entry("1-76", T0_83.class), Map.entry("1-78", T0_83.class),
+                Map.entry("1-80", T0_83.class), Map.entry("1-82", T0_83.class), Map.entry("1-84", T0_83.class), Map.entry("1-86", T0_83.class), Map.entry("1-88", T0_83.class),
+                Map.entry("1-90", T0_83.class), Map.entry("1-92", T0_83.class), Map.entry("1-94", T0_83.class), Map.entry("1-96", T0_83.class), Map.entry("1-98", T0_83.class),
+                Map.entry("1-100", T0_83.class)
 //                </editor-fold>
 //                <editor-fold desc="legendary escorts">
 
@@ -61,6 +71,8 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
 
     public int scalp=0;
 
+    public int lastLevelClear=0;
+
 
     public ArrayList<Integer> soulBufforList = new ArrayList<>(Arrays.asList(21,22,23,24,25,26,27,28,29,31,32,33,34,35,36,37,38,39,41,42,43,44,45,46,47,48,49,51,52,53,54,55,56,57));
     int[][] upgradeCost = {
@@ -81,6 +93,10 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
     JButton SkipTalismansButton;
     FontMetrics labelSize;
     JPanel ChooseTalisman;
+
+    public boolean scout1 = false;
+    public boolean scout2 = false;
+
 
     public int[] fuval = {
             10,10,10,10,10,10,10,
@@ -311,7 +327,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                     imgDir = "Common";
                     break;
                 case 1:
-                    talismanIndex = rand.nextInt(44)*2;
+                    talismanIndex = rand.nextInt(50)*2;
                     imgDir = "Rare";
                     break;
                 case 2:
@@ -319,7 +335,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                     imgDir = "Legendary";
                     break;
                 case 3:
-                    talismanIndex = rand.nextInt(6)*2;
+                    talismanIndex = rand.nextInt(5)*2;
                     imgDir = "mythical";
                     break;
 

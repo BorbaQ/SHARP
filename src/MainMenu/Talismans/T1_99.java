@@ -4,30 +4,30 @@ import MainMenu.Game;
 import MainMenu.GameGame;
 import MainMenu.Main;
 
-import java.awt.*;
-import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-public class T1_61 extends TalismanA{
-    public T1_61(Game gameContext, GameGame gameGameContext) {
+public class T1_99 extends TalismanA{
+    public T1_99(Game gameContext, GameGame gameGameContext) {
         super(gameContext, gameGameContext);
         upgraded = false;
-        power = 0;
+        power = 10000;
     }
     @Override
     public void handleUpgrade() {
         upgraded = true;
     }
     Random rand = new Random();
+    //    TODO done
     @Override
-    public void TakeEffect() throws IOException, FontFormatException {
+    public void TakeEffect() {
         if (gameGame!=null) {
-            if(gameGame.isWinning){
+            if (gameGame.initialization) {
                 if (upgraded) {
-                    gameGame.han+=1;
+                    game.fuval[rand.nextInt(25,34)]*=5;
+                }else{
+                    game.fuval[rand.nextInt(25,34)]*=3;
                 }
-                gameGame.han+=5;
             }
         }
     }

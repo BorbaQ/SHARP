@@ -2,28 +2,28 @@ package MainMenu.Talismans;
 
 import MainMenu.Game;
 import MainMenu.GameGame;
-import MainMenu.Talismans.TalismanA;
+import MainMenu.Main;
 
-public class TTest extends TalismanA {
-//    fuck ass armour
-    int fuBonus = 0;
-    public TTest(Game gameContext, GameGame gameGameContext) {
+import java.util.Objects;
+import java.util.Random;
+
+public class T2_1 extends TalismanA{
+    public T2_1(Game gameContext, GameGame gameGameContext) {
         super(gameContext, gameGameContext);
+        upgraded = false;
         power = 1;
-
     }
-
     @Override
     public void handleUpgrade() {
-        power++;
+        upgraded = true;
     }
 
     @Override
     public void TakeEffect() {
         if (gameGame!=null) {
             if (gameGame.isWinning) {
-                gameGame.han *= 3 * power;
-                System.out.println("1-36");
+                power+= (upgraded ? 8 : 1)* gameGame.switches;
+                gameGame.han*=(upgraded?power/10:power/2);
             }
         }
     }

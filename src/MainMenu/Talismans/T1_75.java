@@ -9,26 +9,27 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-public class T1_61 extends TalismanA{
-    public T1_61(Game gameContext, GameGame gameGameContext) {
+public class T1_75 extends TalismanA{
+    public T1_75(Game gameContext, GameGame gameGameContext) {
         super(gameContext, gameGameContext);
         upgraded = false;
         power = 0;
     }
+
     @Override
     public void handleUpgrade() {
         upgraded = true;
     }
-    Random rand = new Random();
     @Override
     public void TakeEffect() throws IOException, FontFormatException {
         if (gameGame!=null) {
-            if(gameGame.isWinning){
+            if(gameGame.initialization){
+                game.Money+= game.currentLevel*5;
                 if (upgraded) {
-                    gameGame.han+=1;
+                    game.Money+= game.currentLevel*5;
                 }
-                gameGame.han+=5;
             }
+
         }
     }
 }

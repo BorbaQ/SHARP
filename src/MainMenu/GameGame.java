@@ -70,7 +70,10 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     public List<List<Integer>> tenpai = new ArrayList<>();
     JScrollPane doraScroll;
 
-
+    public boolean upgradeInvite = false;
+    public int lastTileIndex =0;
+    public boolean forecedWin = false;
+    public boolean createVine = false;
     public boolean canWin = false;
     public boolean winForgo = false;
     public boolean initialization = true;
@@ -79,6 +82,9 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
 //</editor-fold>
     GameGame() throws IOException, FontFormatException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+
+        Main.mainWindow.game.scout1 = false;
+        Main.mainWindow.game.scout2 = false;
 
         points = 0;
 
@@ -92,6 +98,39 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             if (Arrays.equals(tali, new int[]{0, 60}))sc3=true;
             if (Arrays.equals(tali, new int[]{0, 62}))sc4=true;
         }
+
+
+        boolean noble1 = false;
+        boolean noble2 = false;
+        boolean noble3 = false;
+        boolean noble4 = false;
+
+        for (int[] tali : Main.mainWindow.game.talismans){
+            if (Arrays.equals(tali, new int[]{1, 65}))noble1=true;
+            if (Arrays.equals(tali, new int[]{1, 67}))noble2=true;
+            if (Arrays.equals(tali, new int[]{1, 69}))noble3=true;
+            if (Arrays.equals(tali, new int[]{1, 71}))noble4=true;
+        }
+
+        if (noble1 && noble2 && noble3 && noble4){
+            int indexForNewOne =-5;
+            int idkAtThisPointAnythingWillPass = 0;
+            for (int[] tali : Main.mainWindow.game.talismans){
+                if (Arrays.equals(tali, new int[]{1, 65})){Main.mainWindow.game.talismans[idkAtThisPointAnythingWillPass]=null; indexForNewOne = idkAtThisPointAnythingWillPass;Main.mainWindow.game.talismansAct[idkAtThisPointAnythingWillPass]=null;}
+                if (Arrays.equals(tali, new int[]{1, 67})){Main.mainWindow.game.talismans[idkAtThisPointAnythingWillPass]=null;Main.mainWindow.game.talismansAct[idkAtThisPointAnythingWillPass]=null;}
+                if (Arrays.equals(tali, new int[]{1, 69}))Main.mainWindow.game.talismans[idkAtThisPointAnythingWillPass]=null;Main.mainWindow.game.talismansAct[idkAtThisPointAnythingWillPass]=null;
+                if (Arrays.equals(tali, new int[]{1, 71}))Main.mainWindow.game.talismans[idkAtThisPointAnythingWillPass]=null;Main.mainWindow.game.talismansAct[idkAtThisPointAnythingWillPass]=null;
+                idkAtThisPointAnythingWillPass++;
+            }
+            if (indexForNewOne != -5){
+                Main.mainWindow.game.talismans[indexForNewOne]=new int[]{1,101};
+                Main.mainWindow.game.talismansAct[indexForNewOne] =Game.talismansAlles.get("1-100").getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);;
+            }
+
+        }
+
+
+
         if (sc1 && sc2 && sc3 && sc4){
             int indexForNewOne =-5;
             int idkAtThisPointAnythingWillPass = 0;
@@ -109,8 +148,27 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
         }
 
-        //    <editor-fold desc="Initialization">
+        if (upgradeInvite){
+            int indexForNewOne =-5;
+            int idkAtThisPointAnythingWillPass = 0;
+            for (int[] tali : Main.mainWindow.game.talismans){
+                if (Arrays.equals(tali, new int[]{2, 13})){
+                    Main.mainWindow.game.talismans[idkAtThisPointAnythingWillPass]=null;
+                    indexForNewOne = idkAtThisPointAnythingWillPass;
+                    Main.mainWindow.game.talismansAct[idkAtThisPointAnythingWillPass]=null;}
+                idkAtThisPointAnythingWillPass++;
+            }
+            if (indexForNewOne != -5){
+                int shittyahhnum = rand.nextInt(5);
+                String mythicalnum = "3-"+(shittyahhnum*2);
+                Main.mainWindow.game.talismans[indexForNewOne]=new int[]{3,shittyahhnum*2+1};
+                Main.mainWindow.game.talismansAct[indexForNewOne] =Game.talismansAlles.get(mythicalnum).getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);;
+            }
+        }
 
+
+        //    <editor-fold desc="Initialization">
+        TileWallArray = Main.mainWindow.game.ThrumpSim();
 
         System.out.println("11 milionow"+ Arrays.toString(Main.mainWindow.game.talismansAct));
         talismansActual = Main.mainWindow.game.talismansAct;
@@ -120,6 +178,26 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 talisman.TakeEffect();
             }
         }
+
+//        TODO VINE
+        if (createVine){
+            int indexForNewOne =-5;
+            int idkAtThisPointAnythingWillPass = 0;
+            for (int[] tali : Main.mainWindow.game.talismans){
+                if (Arrays.equals(tali, new int[]{1, 45})){
+                    Main.mainWindow.game.talismans[idkAtThisPointAnythingWillPass]=null;
+                    indexForNewOne = idkAtThisPointAnythingWillPass;
+                    Main.mainWindow.game.talismansAct[idkAtThisPointAnythingWillPass]=null;}
+                idkAtThisPointAnythingWillPass++;
+            }
+            if (indexForNewOne != -5){
+                Main.mainWindow.game.talismans[indexForNewOne]=new int[]{1,99};
+                Main.mainWindow.game.talismansAct[indexForNewOne] =Game.talismansAlles.get("1-98").getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);;
+            }
+        }
+
+
+
         initialization = false;
 
         if (Main.mainWindow == null) {
@@ -230,7 +308,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         addKans(0);
         //        </editor-fold>
         //        <editor-fold desc="TILE WALL">
-        TileWallArray = Main.mainWindow.game.ThrumpSim();
+
 
         openOnes = new int[Main.mainWindow.game.OpenTiles+openBonus];
         ArrayList<Integer> wallPositions = new ArrayList<>();
@@ -278,6 +356,14 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     throw new RuntimeException(ex);
                 } catch (FontFormatException ex) {
                     throw new RuntimeException(ex);
+                } catch (InvocationTargetException ex) {
+                    throw new RuntimeException(ex);
+                } catch (NoSuchMethodException ex) {
+                    throw new RuntimeException(ex);
+                } catch (InstantiationException ex) {
+                    throw new RuntimeException(ex);
+                } catch (IllegalAccessException ex) {
+                    throw new RuntimeException(ex);
                 }
             });
             layeredPane.add(Switch,JLayeredPane.DEFAULT_LAYER);
@@ -298,7 +384,8 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             //            TODO ADD FUNCTION DUMBFUCK v2
             try {
                 skip();
-            } catch (IOException ex) {
+            } catch (IOException | InvocationTargetException | NoSuchMethodException | InstantiationException |
+                     IllegalAccessException ex) {
                 throw new RuntimeException(ex);
             } catch (FontFormatException ex) {
                 throw new RuntimeException(ex);
@@ -593,7 +680,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         layeredPane.revalidate();
         layeredPane.repaint();
     }
-    public void addKans(int kanTile) throws IOException, FontFormatException {
+    public void addKans(int kanTile) throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         if (kanTile!=0) {
             Kans++;
             KansArray.add(kanTile);
@@ -996,7 +1083,8 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                         System.out.println("Sex");
                         try {
                             switchTile(finalTileIdndex);
-                        } catch (IOException ex) {
+                        } catch (IOException | InvocationTargetException | NoSuchMethodException |
+                                 InstantiationException | IllegalAccessException ex) {
                             throw new RuntimeException(ex);
                         } catch (FontFormatException ex) {
                             throw new RuntimeException(ex);
@@ -1052,7 +1140,8 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     if (!isWinning) {
                         try {
                             win();
-                        } catch (IOException ex) {
+                        } catch (IOException | InvocationTargetException | NoSuchMethodException |
+                                 InstantiationException | IllegalAccessException ex) {
                             throw new RuntimeException(ex);
                         } catch (FontFormatException ex) {
                             throw new RuntimeException(ex);
@@ -1087,7 +1176,8 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             }else {
                 try {
                     addKans(potentialKansArray.get(0));
-                } catch (IOException ex) {
+                } catch (IOException | InvocationTargetException | NoSuchMethodException | InstantiationException |
+                         IllegalAccessException ex) {
                     throw new RuntimeException(ex);
                 } catch (FontFormatException ex) {
                     throw new RuntimeException(ex);
@@ -1163,7 +1253,8 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                         System.out.println("Sex");
                         try {
                             addKans(potentialKansArray.get(finalTileIdndex));
-                        } catch (IOException ex) {
+                        } catch (IOException | InvocationTargetException | NoSuchMethodException |
+                                 InstantiationException | IllegalAccessException ex) {
                             throw new RuntimeException(ex);
                         } catch (FontFormatException ex) {
                             throw new RuntimeException(ex);
@@ -1288,7 +1379,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
     }
 
-    public void switchTile(int tileIdndex) throws IOException, FontFormatException {
+    public void switchTile(int tileIdndex) throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         if(wallIndex>35-locked) {
             endGame();
         }else
@@ -1300,6 +1391,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 drawNum++;
                 discard = hand[tileIdndex];
                 discardIndex = tileIdndex;
+                lastTileIndex = tileIdndex;
                 hand[tileIdndex] = TileWallArray.get(wallIndex);
                 lastTile = TileWallArray.get(wallIndex);
                 TileWallArray.set(wallIndex, null);
@@ -1338,7 +1430,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
     }
 
-    public void win() throws IOException, FontFormatException {
+    public void win() throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         isWinning = true;
         yekerMeister_mk_III.kans = KansArray;
         if (drawNum==1){
@@ -1348,6 +1440,18 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             yekerMeister_mk_III.lastDraw = true;
         }
         canWin=false;
+
+        if (forecedWin){
+            List<List<Integer>> results = yekerMeister_mk_III.TenpaiAllCombined(hand);
+            int firstWinningTile = -20;
+            for (List<Integer> waits : results) {
+                if (!waits.isEmpty() && waits.get(0) != 0) {
+                    firstWinningTile = waits.get(0);
+                    break;
+                }
+            }
+            hand[lastTileIndex] =firstWinningTile;
+        }
 
         Map<String,Object> bullshit = yekerMeister_mk_III.analyzeYakuFull(hand);
         fu = (int)bullshit.get("fu");
@@ -1371,6 +1475,23 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                         han++;han++;
                     }
                 } else if (Objects.equals(Main.mainWindow.game.DoraTiles.get(k) + 1, kantile)) {
+                    han++;han++;
+                    han++;han++;
+                }
+            }
+        }
+
+        for (int tile : hand){
+            for (int soul : Main.mainWindow.game.SoulTiles){
+                if (tile==soul){
+                    han++;
+                }
+            }
+        }
+
+        for (int kantile : KansArray) {
+            for (int soul : Main.mainWindow.game.SoulTiles) {
+                if (kantile==soul){
                     han++;han++;
                     han++;han++;
                 }
@@ -1559,6 +1680,14 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     throw new RuntimeException(ex);
                 } catch (FontFormatException ex) {
                     throw new RuntimeException(ex);
+                } catch (InvocationTargetException ex) {
+                    throw new RuntimeException(ex);
+                } catch (NoSuchMethodException ex) {
+                    throw new RuntimeException(ex);
+                } catch (InstantiationException ex) {
+                    throw new RuntimeException(ex);
+                } catch (IllegalAccessException ex) {
+                    throw new RuntimeException(ex);
                 }
 
                 System.out.println("U siebie rób jak u siebie");
@@ -1596,9 +1725,11 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             Main.mainWindow.game.reloadPanel(new Loss());
             return;
         }
+
+        Main.mainWindow.game.lastLevelClear = (int)(points/pointReq[levelIndex] *100);
         Main.mainWindow.game.reloadPanel(new Shop());
     }
-    public void switchTM() throws IOException, FontFormatException {
+    public void switchTM() throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         System.out.println(" K");
         for (int i = 0; i < selectedArray.size(); i++) {
             hand[selectedArray.get(i)] = Main.mainWindow.game.deck.getRandomTile();
@@ -1615,10 +1746,10 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             HRT();
         }
     }
-    public void skip() throws IOException, FontFormatException {
+    public void skip() throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         HRT();
     }
-    public void HRT() throws IOException, FontFormatException {
+    public void HRT() throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         phase2 = true;
         layeredPane.remove(Skip);
         layeredPane.remove(Switch);

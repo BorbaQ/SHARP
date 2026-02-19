@@ -455,8 +455,13 @@ public class Shop extends JPanel implements ActionListener {
                 someflag = true;
                 scalp --;
             }
+            if (Main.mainWindow.game.scout1 && talismanCategory==1){
+                talismanCategory = (rand.nextInt(2)==1?2:0);
+            }
+            if (Main.mainWindow.game.scout2 ){talismanCategory=2;}
 
-            System.out.println(talismanCategory);
+
+                System.out.println(talismanCategory);
             ImageIcon icon = new ImageIcon("src/imgs/randomBS/blowMe.jpeg");
             switch (talismanCategory) {
                 case 0:

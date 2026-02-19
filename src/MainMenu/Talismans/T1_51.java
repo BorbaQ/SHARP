@@ -6,6 +6,7 @@ import MainMenu.Main;
 
 import java.awt.*;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import java.util.Random;
 
@@ -21,7 +22,7 @@ public class T1_51 extends TalismanA{
     }
     Random rand = new Random();
     @Override
-    public void TakeEffect() throws IOException, FontFormatException {
+    public void TakeEffect() throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         if (gameGame!=null) {
             if (!gameGame.isWinning) {
                 if (gameGame.canWin) {

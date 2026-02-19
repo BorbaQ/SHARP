@@ -34,6 +34,7 @@ public class T1_45 extends TalismanA{
                     power--;
                 }
                 if (power <= 0 || power >= 100 ) {
+                    gameGame.createVine = true;
                     power = 100000;
                 }
             }
