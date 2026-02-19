@@ -3,6 +3,9 @@ package MainMenu.Talismans;
 import MainMenu.Game;
 import MainMenu.GameGame;
 
+import java.awt.*;
+import java.io.IOException;
+
 public abstract class TalismanA {
     public Game game;
     public GameGame gameGame;
@@ -20,5 +23,5 @@ public abstract class TalismanA {
     protected TalismanA() {
     }
 
-    abstract public void TakeEffect();
+    abstract public void TakeEffect() throws IOException, FontFormatException;
 }

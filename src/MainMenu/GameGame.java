@@ -1050,7 +1050,13 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 winButton.addActionListener(e -> {
                     //            TODO ADD FUNCTION DUMBFUCK v2
                     if (!isWinning) {
-                        win();
+                        try {
+                            win();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (FontFormatException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 });
                 layeredPane.add(winButton,JLayeredPane.DEFAULT_LAYER);
@@ -1286,7 +1292,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         if(wallIndex>35-locked) {
             endGame();
         }else
-            System.out.println(" Okrutna");
+            System.out.println(" bemger");
             if (phase2) {
                 addDoras();
                 if (winForgo){winForgo=false;}
@@ -1332,7 +1338,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
     }
 
-    public void win(){
+    public void win() throws IOException, FontFormatException {
         isWinning = true;
         yekerMeister_mk_III.kans = KansArray;
         if (drawNum==1){
@@ -1578,13 +1584,13 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 //        TODO YOU LAZY FUCK ADD FAIL/WIN SCREEN n CHECKING WINS
         System.out.println("TO JEST JUSZ KONIEC NIE MA JUSZ NIC");
         if(points < pointReq[levelIndex]){
-            int i =0;
-            for (int[] tali: Main.mainWindow.game.talismans){
-                if (tali[1]==32){
-                    Main.mainWindow.game.talismans[i]=null;
-                    Main.mainWindow.game.talismansAct[i]=null;
+            for (int i = 0; i <Main.mainWindow.game.talismans.length; i++){
+                if (Main.mainWindow.game.talismans[i]!=null) {
+                    if (Arrays.equals(Main.mainWindow.game.talismans[i], new int[]{1, 32})) {
+                        Main.mainWindow.game.talismans[i] = null;
+                        Main.mainWindow.game.talismansAct[i] = null;
+                    }
                 }
-                i++;
             }
             System.out.println("TO JEST JUSZ KONIEC NIE MA JUSZ NIC Zwei");
             Main.mainWindow.game.reloadPanel(new Loss());
