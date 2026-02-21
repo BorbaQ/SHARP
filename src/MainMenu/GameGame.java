@@ -70,6 +70,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     public List<List<Integer>> tenpai = new ArrayList<>();
     JScrollPane doraScroll;
 
+    public boolean isTenpai = false;
     public boolean upgradeInvite = false;
     public int lastTileIndex =0;
     public boolean forecedWin = false;
@@ -80,11 +81,15 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     public int locked =0;
     public int openBonus = 0;
 
+    public Map<String,Object> bullshit;
+
 //</editor-fold>
     GameGame() throws IOException, FontFormatException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
         Main.mainWindow.game.scout1 = false;
         Main.mainWindow.game.scout2 = false;
+        Main.mainWindow.game.heavenlyRestriction = false;
+
 
         points = 0;
 
@@ -922,12 +927,18 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         if (tenpaiDisplay!=null){
             layeredPane.remove(tenpaiDisplay);
         }
+        isTenpai = false;
 
 
 
         hand = Main.mainWindow.game.Sorthand(hand);
         yekerMeister_mk_III.hand = hand;
         tenpai = yekerMeister_mk_III.TenpaiAllCombined(yekerMeister_mk_III.hand);
+        for (List<Integer> listOfTenpaiInTenpai : tenpai){
+            if (!listOfTenpaiInTenpai.isEmpty()){
+                isTenpai = true;
+            }
+        }
         System.out.println("Yeker "+tenpai);
         handWall = new JPanel();
         int tileHeight = (int)(this.getHeight()*0.1 );
@@ -1453,7 +1464,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             hand[lastTileIndex] =firstWinningTile;
         }
 
-        Map<String,Object> bullshit = yekerMeister_mk_III.analyzeYakuFull(hand);
+        bullshit = yekerMeister_mk_III.analyzeYakuFull(hand);
         fu = (int)bullshit.get("fu");
         han =(int)bullshit.get("totalHan");
         for (int tileIdndex =0; tileIdndex < hand.length; tileIdndex++) {
@@ -1512,6 +1523,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
         yekerMeister_mk_III.firstDraw = false;
         yekerMeister_mk_III.lastDraw = false;
+        forecedWin = false;
 
 
 

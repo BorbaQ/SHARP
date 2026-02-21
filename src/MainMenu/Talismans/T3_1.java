@@ -11,8 +11,8 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
-public class T2_23 extends TalismanA{
-    public T2_23(Game gameContext, GameGame gameGameContext) {
+public class T3_1 extends TalismanA{
+    public T3_1(Game gameContext, GameGame gameGameContext) {
         super(gameContext, gameGameContext);
         upgraded = false;
         power = 1;
@@ -22,12 +22,16 @@ public class T2_23 extends TalismanA{
         upgraded = true;
     }
 
+    boolean first = true;
+
     @Override
     public void TakeEffect() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException, FontFormatException {
         if (gameGame!=null) {
-            if (gameGame.initialization){
-
-
+            if (gameGame.isWinning){
+                if ( (Boolean)( gameGame.bullshit.get("isYakuman"))){
+                    power+= (upgraded?3:1);
+                }
+                gameGame.han= (int)( gameGame.han*(power*(upgraded?0.5:1)));
             }
         }
     }

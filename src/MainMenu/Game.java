@@ -29,20 +29,25 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                 Map.entry("0-78", T0_79.class), Map.entry("0-80", T0_81.class), Map.entry("0-82", T0_83.class),
 //                </editor-fold>
 //                <editor-fold desc="rare streetwalkers">
-                Map.entry("1-0", T0_83.class),  Map.entry("1-2", T0_83.class),  Map.entry("1-4", T0_83.class),  Map.entry("1-6", T0_83.class),  Map.entry("1-8", T0_83.class),
-                Map.entry("1-10", T0_83.class), Map.entry("1-12", T0_83.class), Map.entry("1-14", T0_83.class), Map.entry("1-16", T0_83.class), Map.entry("1-18", T0_83.class),
-                Map.entry("1-20", T0_83.class), Map.entry("1-22", T0_83.class), Map.entry("1-24", T0_83.class), Map.entry("1-26", T0_83.class), Map.entry("1-28", T0_83.class),
-                Map.entry("1-30", T0_83.class), Map.entry("1-32", T0_83.class), Map.entry("1-34", T0_83.class),                                    Map.entry("1-38", T0_83.class),
-                Map.entry("1-40", T0_83.class), Map.entry("1-42", T0_83.class), Map.entry("1-44", T0_83.class), Map.entry("1-46", T0_83.class), Map.entry("1-48", T0_83.class),
-                Map.entry("1-50", T0_83.class), Map.entry("1-52", T0_83.class), Map.entry("1-54", T0_83.class), Map.entry("1-56", T0_83.class), Map.entry("1-58", T0_83.class),
-                Map.entry("1-60", T0_83.class), Map.entry("1-62", T0_83.class), Map.entry("1-64", T0_83.class), Map.entry("1-66", T0_83.class), Map.entry("1-68", T0_83.class),
-                Map.entry("1-70", T0_83.class), Map.entry("1-72", T0_83.class), Map.entry("1-74", T0_83.class), Map.entry("1-76", T0_83.class), Map.entry("1-78", T0_83.class),
-                Map.entry("1-80", T0_83.class), Map.entry("1-82", T0_83.class), Map.entry("1-84", T0_83.class), Map.entry("1-86", T0_83.class), Map.entry("1-88", T0_83.class),
-                Map.entry("1-90", T0_83.class), Map.entry("1-92", T0_83.class), Map.entry("1-94", T0_83.class), Map.entry("1-96", T0_83.class), Map.entry("1-98", T0_83.class),
-                Map.entry("1-100", T0_83.class)
+                Map.entry("1-0", T1_1.class),   Map.entry("1-2", T1_3.class),   Map.entry("1-4", T1_5.class),   Map.entry("1-6", T1_7.class),   Map.entry("1-8", T1_9.class),
+                Map.entry("1-10", T1_11.class), Map.entry("1-12", T1_13.class), Map.entry("1-14", T1_15.class), Map.entry("1-16", T1_17.class), Map.entry("1-18", T1_19.class),
+                Map.entry("1-20", T1_21.class), Map.entry("1-22", T1_23.class), Map.entry("1-24", T1_25.class), Map.entry("1-26", T1_27.class), Map.entry("1-28", T1_29.class),
+                Map.entry("1-30", T1_31.class), Map.entry("1-32", T1_33.class), Map.entry("1-34", T1_35.class),                                    Map.entry("1-38", T1_39.class),
+                Map.entry("1-40", T1_41.class), Map.entry("1-42", T1_43.class), Map.entry("1-44", T1_45.class), Map.entry("1-46", T1_47.class), Map.entry("1-48", T1_49.class),
+                Map.entry("1-50", T1_51.class), Map.entry("1-52", T1_53.class), Map.entry("1-54", T1_55.class), Map.entry("1-56", T1_57.class), Map.entry("1-58", T1_59.class),
+                Map.entry("1-60", T1_61.class), Map.entry("1-62", T1_63.class), Map.entry("1-64", T1_65.class), Map.entry("1-66", T1_67.class), Map.entry("1-68", T1_69.class),
+                Map.entry("1-70", T1_71.class), Map.entry("1-72", T1_73.class), Map.entry("1-74", T1_75.class), Map.entry("1-76", T1_77.class), Map.entry("1-78", T1_79.class),
+                Map.entry("1-80", T1_81.class), Map.entry("1-82", T1_83.class), Map.entry("1-84", T1_85.class), Map.entry("1-86", T1_87.class), Map.entry("1-88", T1_89.class),
+                Map.entry("1-90", T1_91.class), Map.entry("1-92", T1_93.class), Map.entry("1-94", T1_95.class), Map.entry("1-96", T1_97.class), Map.entry("1-98", T1_99.class),
+                Map.entry("1-100", T1_101.class),
 //                </editor-fold>
 //                <editor-fold desc="legendary escorts">
-
+                Map.entry("2-0", T2_1.class),   Map.entry("2-2", T2_3.class),   Map.entry("2-4", T2_5.class),   Map.entry("2-6", T2_7.class),   Map.entry("2-8", T2_9.class),
+                Map.entry("2-10", T2_11.class), Map.entry("2-12", T2_13.class), Map.entry("2-14", T2_15.class), Map.entry("2-16", T2_17.class), Map.entry("2-18", T2_19.class),
+                Map.entry("2-20", T2_21.class), Map.entry("2-22", T2_23.class), Map.entry("2-24", T2_25.class), Map.entry("2-26", T2_27.class), Map.entry("2-28", T2_29.class),
+                Map.entry("2-30", T2_31.class), Map.entry("2-32", T2_33.class), Map.entry("2-34", T2_35.class), Map.entry("2-36", T2_37.class), Map.entry("2-38", T2_39.class),
+                Map.entry("2-40", T2_41.class), Map.entry("2-42", T2_43.class), Map.entry("2-44", T2_45.class), Map.entry("2-46", T2_47.class), Map.entry("2-48", T2_49.class),
+                Map.entry("2-50", T2_51.class), Map.entry("2-52", T2_53.class)
 //                </editor-fold>
 //                <editor-fold desc="mythical courtesans">
 
@@ -66,6 +71,9 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
     public ArrayList<Integer> DoraTiles = new ArrayList<>();
     public Deck deck = new Deck();
     public int moneySpentOnReloads = 0;
+    public int moneySpentOnTalismans = 0;
+    public int amountOfBoughtTalismans = 0;
+    public boolean heavenlyRestriction = false;
 
     public int talismansSold =0;
 
@@ -242,7 +250,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
 //        <editor-fold desc="fold1">
         int talismanNum = 3;
         double space = (this.getWidth()*0.7/4/4);
-        if (twotalismans){
+        if (twotalismans || heavenlyRestriction){
             talismanNum = 2;
             space = (this.getWidth()*0.7/2/3);
         }
@@ -458,6 +466,23 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
         talismansAct[endIndex] = buffor2;
     }
     public void sellTalisman(int talismanIndex){
+        if (Objects.equals(talismans[talismanIndex], new int[]{3, 8})){
+            Money+=387;
+            int funkyahhnumba =1;
+            if (talismansAct[talismanIndex].upgraded){
+                funkyahhnumba =2;
+            }
+            while(funkyahhnumba!=0){
+                int nunummbaba = rand.nextInt(0,9);
+                if (talismans[nunummbaba] != null){
+                    talismans[nunummbaba] = new int[]{0,0};
+                    talismans[nunummbaba][1] = talismans[nunummbaba][1]+1;
+                    talismansAct[nunummbaba].handleUpgrade();
+                    funkyahhnumba--;
+                }
+            }
+        }
+
         switch(talismans[talismanIndex][0] ){
             case 0:
                 Money+=3;

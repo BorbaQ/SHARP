@@ -11,8 +11,8 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
-public class T2_23 extends TalismanA{
-    public T2_23(Game gameContext, GameGame gameGameContext) {
+public class T2_31 extends TalismanA{
+    public T2_31(Game gameContext, GameGame gameGameContext) {
         super(gameContext, gameGameContext);
         upgraded = false;
         power = 1;
@@ -25,9 +25,8 @@ public class T2_23 extends TalismanA{
     @Override
     public void TakeEffect() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException, FontFormatException {
         if (gameGame!=null) {
-            if (gameGame.initialization){
-
-
+            if (gameGame.initialization) {
+               gameGame.openBonus+=(upgraded?15:10);
             }
         }
     }

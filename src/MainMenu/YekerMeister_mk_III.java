@@ -152,11 +152,10 @@ public class YekerMeister_mk_III {
     List<Integer> findRegularWaitsFast(int[] hand) {
         List<Integer> waits = new ArrayList<>();
 
-        // try adding each possible tile
         for (int tile = 11; tile <= 49; tile++) {
             int suit = tile / 10, num = tile % 10;
-            if (num == 0 || num > 9) continue;     // skip invalid
-            if (suit == 1 && tile > 17) continue;  // honors only 11–17
+            if (num == 0 || num > 9) continue;
+            if (suit == 1 && tile > 17) continue;
 
             int[] test = Arrays.copyOf(hand, hand.length + 1);
             test[hand.length] = tile;

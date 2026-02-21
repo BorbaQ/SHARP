@@ -389,6 +389,10 @@ public class Shop extends JPanel implements ActionListener {
                 System.out.println("Invalid number: " + buyTalisman[value].getText().substring(1,3));
                 return;
             }
+            if (Main.mainWindow.game.Money < value) {
+                return;
+            }
+            Main.mainWindow.game.moneySpentOnTalismans+=value;
             Main.mainWindow.game.Money -= value;
             moneyLabel.setText(" Money: "+Main.mainWindow.game.Money+" Dong ");
             switch (value) {
