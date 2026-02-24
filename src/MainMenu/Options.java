@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -94,8 +96,8 @@ public class Options extends JPanel implements ActionListener {
         if (Main.mainWindow != null) {
             fullscreenCheckbox.setSelected(Main.mainWindow.fullscreen);
         }
-        ImageIcon yesico1 = new ImageIcon("src/imgs/fullcheck.png");
-        ImageIcon noIco1 = new ImageIcon("src/imgs/emptyCheck.png");
+        ImageIcon yesico1 = new ImageIcon("src/imgs/randomBS/fullcheck.png");
+        ImageIcon noIco1 = new ImageIcon("src/imgs/randomBS/emptyCheck.png");
         Image yesico2 = yesico1.getImage().getScaledInstance((int)(this.getWidth()/40),(int)(this.getWidth()/40),Image.SCALE_SMOOTH);
         Image noico2 = noIco1.getImage().getScaledInstance((int)(this.getWidth()/40),(int)(this.getWidth()/40),Image.SCALE_SMOOTH);
         fullscreenCheckbox.setSelectedIcon(new ImageIcon(yesico2));
@@ -122,6 +124,16 @@ public class Options extends JPanel implements ActionListener {
         GoBackHolder.add(Box.createHorizontalStrut((int)((this.getWidth()*0.35)- (double) labelSize.stringWidth(" Go Back ") /2)));
         GoBackHolder.add(goBackButton);
 
+        resolutionDropdown.addActionListener(e -> OptionHolder.repaint());
+        goBackButton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                OptionHolder.repaint();
+            }
+            public void mouseExited(MouseEvent e) {
+                OptionHolder.repaint();
+            }
+        });
+
 
         this.setVisible(true);
     }
@@ -136,12 +148,9 @@ public class Options extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==resolutionDropdown){
             Main.mainWindow.fullscreen = false;
-            System.out.println("dic");
             switch (resolutionDropdown.getSelectedIndex()){
                 case 0:
-                    System.out.println("balls");
                     Main.mainWindow.setFullAndRes(new int[] {800,600},false);
-
                     break;
                 case 1:
                     Main.mainWindow.setFullAndRes(new int[] {1024,768},false);
@@ -171,7 +180,6 @@ public class Options extends JPanel implements ActionListener {
             Main.mainWindow.fullscreen = fullscreenCheckbox.isSelected();
             switch (resolutionDropdown.getSelectedIndex()){
                 case 0:
-                    System.out.println("nimger");
                     Main.mainWindow.setFullAndRes(new int[] {800,600},fullscreenCheckbox.isSelected());
 
                     break;

@@ -285,7 +285,6 @@ public class Shop extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buyOpen) {
-            System.out.println("Dupa");
             if(Main.mainWindow.game.OpenShopBought<Main.mainWindow.game.OpenShopLimit){
                 if(Main.mainWindow.game.getUpgradeCost("Open")<=Main.mainWindow.game.Money){
                     System.out.println("Bingo");
@@ -305,7 +304,6 @@ public class Shop extends JPanel implements ActionListener {
             }
         }else
         if (e.getSource() == buySoul) {
-            System.out.println("Dupa");
             if(Main.mainWindow.game.SoulShopBought<Main.mainWindow.game.SoulShopLimit){
                 if(Main.mainWindow.game.getUpgradeCost("Soul")<=Main.mainWindow.game.Money) {
                     System.out.println("Bingo");
@@ -325,7 +323,6 @@ public class Shop extends JPanel implements ActionListener {
             }
         }else
         if (e.getSource() == buyDora) {
-            System.out.println("Dupa");
             if (Main.mainWindow.game.DoraShopBought<Main.mainWindow.game.DoraShopLimit) {
                 if (Main.mainWindow.game.getUpgradeCost("Dora") <= Main.mainWindow.game.Money ){
                     System.out.println("Bingo");
@@ -355,7 +352,6 @@ public class Shop extends JPanel implements ActionListener {
             }
         } else
         if (e.getSource()==Nextlevel) {
-        System.out.println("Dupa Dupsko");
         Main.mainWindow.game.deck.initializeDeck();
         Main.mainWindow.game.moneySpentOnReloads += (5+RefreshCost)*((RefreshCost/5)-1)/2;
         try {
@@ -441,7 +437,6 @@ public class Shop extends JPanel implements ActionListener {
             PacksHolder[i].setBackground(new Color(255,0,0,0));
             PacksHolder[i].setOpaque(true);
 
-            System.out.println("kutas");
             if (i%2!=0) {
                 PacksHolder[i].add(Box.createVerticalStrut((int)(this.getHeight() /20)-10));
             }
@@ -463,8 +458,6 @@ public class Shop extends JPanel implements ActionListener {
                 talismanCategory = (rand.nextInt(2)==1?2:0);
             }
             if (Main.mainWindow.game.scout2 ){talismanCategory=2;}
-
-
                 System.out.println(talismanCategory);
             ImageIcon icon = new ImageIcon("src/imgs/randomBS/blowMe.jpeg");
             switch (talismanCategory) {

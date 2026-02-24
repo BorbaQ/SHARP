@@ -31,9 +31,12 @@ public class T3_11 extends TalismanA{
             }
             if (first) {
                 first = false;
-                for (int soul : Main.mainWindow.game.SoulTiles) {
-                    if (gameGame.discard == soul) {
-                        game.Money += (upgraded ? 2 : 1);
+                power+= gameGame.locked*(upgraded ? 3 : 2);
+                for (int i = 36-gameGame.locked; i <36; i++) {
+                    for (int soul : Main.mainWindow.game.SoulTiles) {
+                        if (gameGame.TileWallArray.get(i) == soul) {
+                            power += (upgraded ? 2 : 1);
+                        }
                     }
                 }
             }

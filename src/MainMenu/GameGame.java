@@ -184,7 +184,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             }
         }
 
-//        TODO VINE
         if (createVine){
             int indexForNewOne =-5;
             int idkAtThisPointAnythingWillPass = 0;
@@ -333,14 +332,11 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         //        <editor-fold desc="hand">
         hand = Main.mainWindow.game.initialisationOfZeHandZe();
 
-        for (int a : hand){
-            System.out.println(a+" gamgam init");
-        }
 
         updateHand();
         // </editor-fold>
         //<editor-fold desc="Game game">
-//        TODO PHASE 1 DICK
+//        TODO PHASE 1
             Switch= new JButton();
             Switch.setFont(Jap);
             Switch.setText(" Switch "+switches+" ");
@@ -354,7 +350,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             Switch.setBackground(new Color(245, 205, 105, 255));
             Switch.setFont(Jap);
             Switch.addActionListener(e -> {
-    //            TODO ADD FUNCTION DUMBFUCK
                 try {
                     switchTM();
                 } catch (IOException ex) {
@@ -386,7 +381,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         Skip.setBackground(new Color(245, 205, 105, 255));
         Skip.setFont(Jap);
         Skip.addActionListener(e -> {
-            //            TODO ADD FUNCTION DUMBFUCK v2
             try {
                 skip();
             } catch (IOException | InvocationTargetException | NoSuchMethodException | InstantiationException |
@@ -407,8 +401,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     }
 
     public void showTalismans(){
-//        TODO REMOVE THE FUCKING SET TALISMANS LINE
-//        <editor-fold desc="main panel fuckery">
+//        <editor-fold desc="main panel trickery">
         JPanel talismansPanel = new JPanel();
         talismansPanel.setLayout(new BoxLayout(talismansPanel, BoxLayout.Y_AXIS));
         talismansPanel.setBackground(new Color(117, 95, 27, 250));
@@ -431,7 +424,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
         talismansPanel.add(talismansPanel2);
 //        </editor-fold>
-//<editor-fold desc="talisman Showing Fuckery">
+//<editor-fold desc="talisman Showing trickery">
 
 
         if (Main.mainWindow.game.numTalismans==0){
@@ -472,7 +465,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                             break;
                     }
                     talismanIndex = Main.mainWindow.game.talismans[i][1];
-                    System.out.println(" "+i + "  " + talismanIndex + " Ene due rike fake weź tego śmierdziela w łape ");
                     if (talismanIndex < 10) {
                         icon = new ImageIcon("src/imgs/talismans/" + imgDir + "/talisman00" + talismanIndex + ".png");
                     } else {
@@ -503,7 +495,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     comboBox.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             String selected = (String) comboBox.getSelectedItem();
-                            System.out.println(selected + " Pije pale konia wale");
                             Main.mainWindow.game.SwitchTalismans(finalI, Integer.parseInt(selected) - 1);
                             layeredPane.remove(talismansPanel);
                             showTalismans();
@@ -511,11 +502,8 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                             layeredPane.repaint();
                         }
                     });
-
                     talisman3.add(comboBox);
 
-
-//
                     talismansPanel2.add(talisman3);
 //            TalismanHolder.add(PacksHolder[i]);
                     talisman3.add(Box.createVerticalGlue());
@@ -525,7 +513,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             }
         }
 //        </editor-fold>
-//<editor-fold desc="Go bak fuckery">
+//<editor-fold desc="Go bak trickery">
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
         buttonsPanel.setBackground(new Color(245, 0, 0,0));
@@ -557,7 +545,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         layeredPane.repaint();
     }
     public String interpretTile(int tile){
-        String returnString = "Chuj";
+        String returnString = "na pewno nie słowow na męske genitalia";
         if (tile>100){
             switch ((tile-50)/100){
                 case 2:
@@ -567,8 +555,8 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 case 4:
                     return "Sou5-Dora.png";
                 default:
-                    System.out.println("Nie wiem jakim chujem to zaszło interpretacja tile "+tile);
-                    return "Nie wiem jakim chujem to zaszło";
+                    System.out.println("Nie wiem jakim cemzura to zaszło interpretacja tile "+tile);
+                    return "Nie wiem jakim cemzura to zaszło";
             }
         }else {
             switch (tile/10){
@@ -595,10 +583,10 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                         case 7:
                             return "Hatsu.png";
                         default:
-                            System.out.println("Kon kurwa Gratulations nie wiem jakim chujem ci sie to udało " + tile);
+                            System.out.println("Kon cemzura Gratulations nie wiem jakim cemzura ci sie to udało " + tile);
                     }
                     default:
-                        System.out.println(" jak to widzisz to kuźwa gratulacje bo to niemożliwe "+ tile);
+                        System.out.println(" jak to widzisz to cemzura gratulacje bo to niemożliwe "+ tile);
             }
         }
 
@@ -649,7 +637,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             DoraPanel.add(Box.createHorizontalStrut((int)(1)));
 
             ArrayList<Integer> doras = Main.mainWindow.game.DoraTiles;
-            System.out.println("kwutwas 123 "+doras.get(i));
 
             ImageIcon icon = new ImageIcon("src/imgs/Regular/"+interpretTile(doras.get(i)));
             Image image = icon.getImage();
@@ -685,7 +672,8 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         layeredPane.revalidate();
         layeredPane.repaint();
     }
-    public void addKans(int kanTile) throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void addKans(int kanTile) throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException,
+            IllegalAccessException {
         if (kanTile!=0) {
             Kans++;
             KansArray.add(kanTile);
@@ -765,9 +753,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             layeredPane.add(KanPanel, JLayeredPane.DEFAULT_LAYER);
         }
 
-
-    }
-    public void addKans2(){
 
     }
     public void updateWall(){
@@ -1072,9 +1057,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
                         @Override
                         public void mouseExited(MouseEvent e) {
-                            System.out.println("Gej");
                             if (tenpaiDisplay!=null) {
-                                System.out.println("Party");
                                 layeredPane.remove(tenpaiDisplay);
                                 layeredPane.revalidate();
                                 layeredPane.repaint();
@@ -1091,7 +1074,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 TileWallHolder2.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        System.out.println("Sex");
                         try {
                             switchTile(finalTileIdndex);
                         } catch (IOException | InvocationTargetException | NoSuchMethodException |
@@ -1126,7 +1108,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 showKanButton();
             }
 //                </editor-fold>
-            System.out.println((winButton!=null)+"sex or smth");
             if (winButton!=null){
                 layeredPane.remove(winButton);
                 winButton = null;
@@ -1147,7 +1128,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 winButton.setBackground(new Color(245, 205, 105, 255));
                 winButton.setFont(Jap);
                 winButton.addActionListener(e -> {
-                    //            TODO ADD FUNCTION DUMBFUCK v2
+                    //            TODO ADD FUNCTION cemzura v2
                     if (!isWinning) {
                         try {
                             win();
@@ -1181,7 +1162,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         kanButton.setBackground(new Color(245, 205, 105, 255));
         kanButton.setFont(Jap);
         kanButton.addActionListener(e -> {
-            //            TODO ADD FUNCTION DUMBFUCK v2
+            //            TODO ADD FUNCTION cemzura v2
             if (potentialKansArray.size() > 1) {
                 chooseYourKan();
             }else {
@@ -1261,7 +1242,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 TileWallHolder2.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        System.out.println("Sex");
                         try {
                             addKans(potentialKansArray.get(finalTileIdndex));
                         } catch (IOException | InvocationTargetException | NoSuchMethodException |
@@ -1309,12 +1289,9 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         TileWallHolder2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Sex 2 ");
                 layeredPane.remove(kanpenl);
-                System.out.println("Sex 3 ");
                 layeredPane.revalidate();
                 layeredPane.repaint();
-                System.out.println("Sex 4 ");
             }
         });
 
@@ -1326,7 +1303,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         int kanpanelsize = tileWidth*(tenpais.size()+4) +(tenpais.size()+2)*this.getWidth()/120 ;
         tenpaiDisplay = new JPanel();
         tenpaiDisplay.setLayout(null);
-//        TODO YOU LAZY FUCK MAKE DISPLAY OF TENPAI PER TILE
+//        TODO YOU LAZY cemzura MAKE DISPLAY OF TENPAI PER TILE
         tenpaiDisplay.setBackground(new Color(245, 205, 105, 255));
         tenpaiDisplay.setLayout(new FlowLayout());
         tenpaiDisplay.setBounds(
@@ -1396,7 +1373,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         }else
             System.out.println(" bemger");
             if (phase2) {
-                addDoras();
                 if (winForgo){winForgo=false;}
                 if (canWin){winForgo = true; canWin=false;}
                 drawNum++;
@@ -1432,7 +1408,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     selectedArray.add(tileIdndex);
                 }
 
-                System.out.println(" BAŁAKNICA");
+                System.out.println(" cemzura");
                 layeredPane.remove(handWall);
                 updateHand();
                 layeredPane.repaint();
@@ -1590,7 +1566,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
             Image scaledImage;
             Image image;
 
-            // <editor-fold desc="tier fuckery">
+            // <editor-fold desc="tier cemzura">
             String rarity= "";
             String buff0 = "";
             Boolean imIn =false;
@@ -1626,7 +1602,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     rarity="Legendary.png";
                     break;
                 default:
-                    System.out.println("what the fucking sigma  "+buff0);
+                    System.out.println("what the cemzura sigma  "+buff0);
                     break;
             }
             // </editor-fold>
@@ -1702,14 +1678,13 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     throw new RuntimeException(ex);
                 }
 
-                System.out.println("U siebie rób jak u siebie");
                 System.out.println(Arrays.deepToString(Main.mainWindow.game.talismans));
                 layeredPane.revalidate();
                 layeredPane.repaint();
             }
         });
 
-//        here TODO go to game you fuck
+//        here TODO go to game you cemzura
 
         WinPanel.add(showPanel);
 
@@ -1722,8 +1697,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
     }
 
     public void endGame() throws IOException, FontFormatException {
-//        TODO YOU LAZY FUCK ADD FAIL/WIN SCREEN n CHECKING WINS
-        System.out.println("TO JEST JUSZ KONIEC NIE MA JUSZ NIC");
+//        TODO YOU LAZY cemzura ADD FAIL/WIN SCREEN n CHECKING WINS
         if(points < pointReq[levelIndex]){
             for (int i = 0; i <Main.mainWindow.game.talismans.length; i++){
                 if (Main.mainWindow.game.talismans[i]!=null) {
@@ -1733,7 +1707,6 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     }
                 }
             }
-            System.out.println("TO JEST JUSZ KONIEC NIE MA JUSZ NIC Zwei");
             Main.mainWindow.game.reloadPanel(new Loss());
             return;
         }
@@ -1742,16 +1715,13 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         Main.mainWindow.game.reloadPanel(new Shop());
     }
     public void switchTM() throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        System.out.println(" K");
         for (int i = 0; i < selectedArray.size(); i++) {
             hand[selectedArray.get(i)] = Main.mainWindow.game.deck.getRandomTile();
             System.out.println(selectedArray.get(i));
         }
         selectedArray.clear();
-        System.out.println(" U");
         layeredPane.remove(handWall);
         updateHand();
-        System.out.println(" T");
         switches--;
         Switch.setText(" Switch "+switches+" ");
         if (switches <=0) {

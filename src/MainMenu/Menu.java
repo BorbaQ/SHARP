@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -98,6 +100,23 @@ public class Menu extends JPanel implements ActionListener {
 
 //        this.add(fgPanel);
 //        this.add(BgImage);
+        JPanel parentPanel = this; // 'this' is the parent panel containing buttons
+
+        MouseAdapter repaintParentOnHover = new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                parentPanel.repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                parentPanel.repaint();
+            }
+        };
+
+        StartGame.addMouseListener(repaintParentOnHover);
+        Settings.addMouseListener(repaintParentOnHover);
+        Exit.addMouseListener(repaintParentOnHover);
 
 
         this.setVisible(true);

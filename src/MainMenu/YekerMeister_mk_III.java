@@ -121,7 +121,6 @@ public class YekerMeister_mk_III {
         boolean hasDuplicate = count.values().stream().anyMatch(c -> c == 2);
 
         if (hasAll && hasDuplicate) {
-            System.out.println("Sexing n rollin");
             return new ArrayList<>(orphans);
         }
 
@@ -399,7 +398,7 @@ public class YekerMeister_mk_III {
         for (int t : tripletNums) {
             int digit = t % 10;
             counts.put(digit, counts.getOrDefault(digit, 0) + 1);
-            if (counts.get(digit) >= 3) return true; // found 3 triplets of same number
+            if (counts.get(digit) >= 3) return true;
         }
         return false;
     }
@@ -711,9 +710,6 @@ public class YekerMeister_mk_III {
         int nine = count.getOrDefault(suit * 10 + 9, 0);
         return one >= 3 && nine >= 3;
     }
-
-    //        TODO YOU LAZY FUCK IMPLEMENT All WAITS
-
 //    Boolean YKokushiMusoujuusanmenMachi (){}
 //    Boolean Suuankoutankimachi{}
 //    int YJunseiChuurenPoutou (){}
@@ -729,7 +725,7 @@ public class YekerMeister_mk_III {
             if (count.getOrDefault(w, 0) >= 3)
                 triplet++;
             else
-                return false; // any missing or weak wind → no yakuman
+                return false;
         }
 
         return triplet == 4;

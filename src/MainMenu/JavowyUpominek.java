@@ -26,7 +26,6 @@ public class JavowyUpominek extends JPanel {
         try {
             Jap = Font.createFont(Font.TRUETYPE_FONT,new File("src/Fonts/YOZAKURA-Regular.otf")).deriveFont((float)(Windowheight/20));
         } catch (FontFormatException | IOException e) {
-            System.out.println("font fail upominek");
             e.printStackTrace();
             Jap = new Font("Arial", Font.BOLD, 40);
         }
@@ -46,13 +45,10 @@ public class JavowyUpominek extends JPanel {
             g2.setFont(Jap);
             g2.drawString("Power: "+text,
                     (int)(width*0.5-labelSize.stringWidth("Power: "+text)+30)
-//                    10
                     ,
-//                    height/5
                     (int)(height*1.1)
             )
             ;
-
             g2.dispose();
         }
     }

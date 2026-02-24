@@ -16,7 +16,6 @@ public class PisarzJavy extends JPanel {
         int tileWidth = (int)( tileHeight*3/4*1.5);
         width = tileWidth;
         height = tileHeight;
-
         this.text = text;
         this.setBounds(0,0,600, 600);
         setOpaque(false);

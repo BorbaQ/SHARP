@@ -47,11 +47,12 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                 Map.entry("2-20", T2_21.class), Map.entry("2-22", T2_23.class), Map.entry("2-24", T2_25.class), Map.entry("2-26", T2_27.class), Map.entry("2-28", T2_29.class),
                 Map.entry("2-30", T2_31.class), Map.entry("2-32", T2_33.class), Map.entry("2-34", T2_35.class), Map.entry("2-36", T2_37.class), Map.entry("2-38", T2_39.class),
                 Map.entry("2-40", T2_41.class), Map.entry("2-42", T2_43.class), Map.entry("2-44", T2_45.class), Map.entry("2-46", T2_47.class), Map.entry("2-48", T2_49.class),
-                Map.entry("2-50", T2_51.class), Map.entry("2-52", T2_53.class)
+                Map.entry("2-50", T2_51.class), Map.entry("2-52", T2_53.class),
 //                </editor-fold>
 //                <editor-fold desc="mythical courtesans">
-
-
+                Map.entry("3-0", T3_1.class),   Map.entry("3-2", T3_3.class),   Map.entry("3-4", T3_5.class),   Map.entry("3-6", T3_7.class),   Map.entry("3-8", T3_9.class),
+                Map.entry("3-10", T3_11.class)
+//                </editor-fold>
         ));
 
     public TalismanA[] talismansAct = new TalismanA[8];
@@ -200,9 +201,6 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                 System.out.println("Addin "+ category + "  "+index+"  "+i);
                 return true;
             }
-//  todo         here so i kind of added upgrading talismans and talismans functionality core
-//  todo         before you can test it all out you should add all talismans even place holders cause of this shitty line
-//  todo         good luck and remember its better to cum in the sink than to sink in the cum
         }
         for (int i =0; i < talismans.length;i++){
             if (talismans[i] == null){
@@ -254,7 +252,6 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
             talismanNum = 2;
             space = (this.getWidth()*0.7/2/3);
         }
-        System.out.println("Kutas Kutas Dupa Cipa");
 
         ChooseTalisman = new JPanel();
         ChooseTalisman.setLayout(new BoxLayout(ChooseTalisman, BoxLayout.Y_AXIS));
@@ -291,7 +288,6 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
             ImageIcon icon = new ImageIcon("src/imgs/blowMe.jpeg");
 
             int talismanCategory =0;
-
             switch (category){
 //                <editor-fold desc="common">
                 case 0:
@@ -348,7 +344,6 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                     break;
 
             }
-            System.out.println(" "+talismanIndex+" Zaciagam sie petem gaz w podloge gniete ");
             if (talismanIndex<10) {
                 icon = new ImageIcon("src/imgs/talismans/" + imgDir + "/talisman00" + talismanIndex + ".png");
             }else {
@@ -504,8 +499,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
     }
 
     public void showTalismans(){
-//        TODO REMOVE THE FUCKING SET TALISMANS LINE
-//        <editor-fold desc="main panel fuckery">
+//        <editor-fold desc="main panel trickery">
         JPanel talismansPanel = new JPanel();
         talismansPanel.setLayout(new BoxLayout(talismansPanel, BoxLayout.Y_AXIS));
         talismansPanel.setBackground(new Color(117, 95, 27, 250));
@@ -528,7 +522,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
 
         talismansPanel.add(talismansPanel2);
 //        </editor-fold>
-//<editor-fold desc="talisman Showing Fuckery">
+//<editor-fold desc="talisman Showing trickery">
 
 
         if (numTalismans==0){
@@ -569,7 +563,6 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                             break;
                     }
                     talismanIndex = talismans[i][1];
-                    System.out.println(" "+i + "  " + talismanIndex + " Ene due rike fake weź tego śmierdziela w łape ");
                     if (talismanIndex < 10) {
                         icon = new ImageIcon("src/imgs/talismans/" + imgDir + "/talisman00" + talismanIndex + ".png");
                     } else {
@@ -599,7 +592,6 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                     int finalI = i;
                     takeButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            System.out.println(finalI + " Programista za niecałe 300 a dokładnie za 200 jak z faktura to drożej");
                             sellTalisman(finalI);
                             layeredPane.remove(talismansPanel);
                             showTalismans();
@@ -609,7 +601,6 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                             layeredPane.repaint();
                         }
                     });
-                    System.out.println("show "+Main.mainWindow.game.talismansAct[i].power);
                     talisman3.add(takeButton);
 
 // COMBO box i argumenty do metofdy to action code comboboxa i wybrana liczba
@@ -624,7 +615,6 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                     comboBox.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             String selected = (String) comboBox.getSelectedItem();
-                            System.out.println(selected + " Pije pale konia wale");
                             SwitchTalismans(finalI, Integer.parseInt(selected) - 1);
                             layeredPane.remove(talismansPanel);
                             showTalismans();
@@ -646,7 +636,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
             }
         }
 //        </editor-fold>
-//<editor-fold desc="Go bak fuckery">
+//<editor-fold desc="Go bak trickery">
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
         buttonsPanel.setBackground(new Color(245, 0, 0,0));
@@ -678,11 +668,9 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
         layeredPane.repaint();
     }
     public void addSoulTile(){
-//        TODO MAKE THIS FUCKING FUNCTION
         int randmsth = rand.nextInt(soulBufforList.size());
         SoulTiles.add(soulBufforList.get(randmsth));
         soulBufforList.remove(randmsth);
-//        TODO FUCK YOU I MADE THIS FUNCTION
     }
     public void addDoraTiles(){
         DoraTiles.clear();
@@ -703,12 +691,8 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
         int[] list = new int[14];
         for (int i =0; i < 13;i++){
             list[i] = deck.getRandomTile();
-            System.out.println(list[i] + " init");
         }
         list[13] =0;
-        for (int i =0; i < 14;i++){
-            System.out.println(list[i] + " init");
-        }
         list = new int[]{11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 0};
         return list;
     }
