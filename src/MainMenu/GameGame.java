@@ -672,8 +672,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         layeredPane.revalidate();
         layeredPane.repaint();
     }
-    public void addKans(int kanTile) throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException,
-            IllegalAccessException {
+    public void addKans(int kanTile) throws IOException, FontFormatException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         if (kanTile!=0) {
             Kans++;
             KansArray.add(kanTile);

@@ -106,7 +106,6 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
     public boolean scout1 = false;
     public boolean scout2 = false;
 
-
     public int[] fuval = {
             10,10,10,10,10,10,10,
             5,5,5,5,5,5,5,5,5,
@@ -693,7 +692,6 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
             list[i] = deck.getRandomTile();
         }
         list[13] =0;
-        list = new int[]{11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 0};
         return list;
     }
 
