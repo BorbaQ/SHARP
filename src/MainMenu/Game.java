@@ -131,8 +131,8 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
         System.out.println("Final power: " + t.power);
 
 
-        talismans[0] = new int[] {0,6};
-        talismansAct[0] = talismansAlles.get("0-6").getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);
+        talismans[0] = new int[] {0,8};
+        talismansAct[0] = talismansAlles.get("0-8").getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);
         talismans[1] = new int[] {1,36};
         talismansAct[1] = talismansAlles.get("1-36").getDeclaredConstructor(Game.class , GameGame.class).newInstance(this,null);
         talismans[2] = new int[] {0,14};
@@ -143,7 +143,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
         talismans[5] = null;
         talismans[6] = null;
         talismans[7] = null;
-        numTalismans = 2;
+        numTalismans = 3;
 
         this.setLayout(new BorderLayout());
         layeredPane = new JLayeredPane();

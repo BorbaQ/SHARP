@@ -848,7 +848,9 @@ public class YekerMeister_mk_III {
         return fu;
     }
     public boolean isComplete(int[] hand) {
-        Boolean one = isWinningHandFast(hand);
+        this.normaliseHand();
+        int[] newhand = this.hand;
+        Boolean one = isWinningHandFast(newhand);
         Boolean two = YChitoitsu();
         Boolean three = Y13Orphans();
         if (one){
@@ -860,34 +862,44 @@ public class YekerMeister_mk_III {
         if (three){
             System.out.println(" 13 sierot");
         }
-        return isWinningHandFast(hand) || YChitoitsu() || Y13Orphans();
+        return isWinningHandFast(newhand) || YChitoitsu() || Y13Orphans();
     }
     public static void main(String[] args) {
-        YekerMeister_mk_III engine = new YekerMeister_mk_III();
-        engine.normaliseHand();
+//        YekerMeister_mk_III engine = new YekerMeister_mk_III();
+//        engine.normaliseHand();
+//
+//        int[] hand = {
+//                32,32,32,
+//                33,33,34,
+//                34,35,350,
+//                37,38,39,
+//                39,39
+//        };
+//
+//        engine.hand = hand;
+//
+//        System.out.println(engine.isComplete(hand));
+//
+//
+////        List<List<Integer>> tenpai = engine.TenpaiAllCombined(engine.hand);
+////        System.out.println(tenpai);
+//
+//        Map<String,Object> analysis = engine.analyzeYakuFull(engine.hand);
+//        System.out.println("Detected yaku: " + analysis.get("yakuList"));
+//        System.out.println("Total han: " + analysis.get("totalHan"));
+//        System.out.println("Fu: " + analysis.get("fu"));
+//        System.out.println("Points (fu x han): " + analysis.get("points"));
+//
+//        System.out.println(engine.T13OrphansWaits(new int[]{
+//                11,12,13,14,15,16,17,
+//                21,29,31,39,41,49,17
+//        }));
 
-        int[] hand = {
-                11,12,13,
-                14,15,16,
-                17,21,29,
-                31,39,41,
-                49,17
-        };
+        int[][] list = {{0,1},{0,1},{1,1}};
 
-        engine.hand = hand;
+        int[][] list2 = new int[list[0].length][list.length];
 
-        List<List<Integer>> tenpai = engine.TenpaiAllCombined(engine.hand);
-        System.out.println(tenpai);
+        for (int[] )
 
-        Map<String,Object> analysis = engine.analyzeYakuFull(engine.hand);
-        System.out.println("Detected yaku: " + analysis.get("yakuList"));
-        System.out.println("Total han: " + analysis.get("totalHan"));
-        System.out.println("Fu: " + analysis.get("fu"));
-        System.out.println("Points (fu x han): " + analysis.get("points"));
-
-        System.out.println(engine.T13OrphansWaits(new int[]{
-                11,12,13,14,15,16,17,
-                21,29,31,39,41,49,17
-        }));
     }
 }
