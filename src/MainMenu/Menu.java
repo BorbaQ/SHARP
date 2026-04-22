@@ -124,6 +124,7 @@ public class Menu extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Audio.play("c");
         if (e.getSource()==Exit){
             System.exit(0);
         }else if (e.getSource()==StartGame){

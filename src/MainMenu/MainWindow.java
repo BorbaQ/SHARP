@@ -54,6 +54,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Audio.play("c");
 
     }
 }

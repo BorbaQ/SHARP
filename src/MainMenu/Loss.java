@@ -80,6 +80,7 @@ public class Loss extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == Restart) {
+            Audio.play("c");
             System.out.println("restart");
             try {
                 Main.mainWindow.dispose();

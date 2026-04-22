@@ -494,6 +494,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     final int finalI = i;
                     comboBox.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
+                            Audio.play("c");
                             String selected = (String) comboBox.getSelectedItem();
                             Main.mainWindow.game.SwitchTalismans(finalI, Integer.parseInt(selected) - 1);
                             layeredPane.remove(talismansPanel);
@@ -532,6 +533,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         Goback.addActionListener(new  ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Audio.play("c");
                 layeredPane.remove(talismansPanel);
                 layeredPane.revalidate();
                 layeredPane.repaint();
@@ -1051,12 +1053,15 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                     TileWallHolder2.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseEntered(MouseEvent e) {
+                            Audio.play("c");
                             displayTenpais(TileWallHolder2, tenpai.get(finalTileIdndex1));
                         }
 
                         @Override
                         public void mouseExited(MouseEvent e) {
+                            Audio.play("c");
                             if (tenpaiDisplay!=null) {
+                                Audio.play("c");
                                 layeredPane.remove(tenpaiDisplay);
                                 layeredPane.revalidate();
                                 layeredPane.repaint();
@@ -1073,6 +1078,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 TileWallHolder2.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
+                        Audio.play("c");
                         try {
                             switchTile(finalTileIdndex);
                         } catch (IOException | InvocationTargetException | NoSuchMethodException |
@@ -1241,6 +1247,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
                 TileWallHolder2.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
+                        Audio.play("c");
                         try {
                             addKans(potentialKansArray.get(finalTileIdndex));
                         } catch (IOException | InvocationTargetException | NoSuchMethodException |
@@ -1288,6 +1295,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         TileWallHolder2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                Audio.play("c");
                 layeredPane.remove(kanpenl);
                 layeredPane.revalidate();
                 layeredPane.repaint();
@@ -1653,6 +1661,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
         showPanel.add(close);
         close.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                Audio.play("c");
                 layeredPane.remove(WinPanel);
                 isWinning = false;
                 int tileIndex = 14;
@@ -1740,7 +1749,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 //<editor-fold desc="import fuckery">
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        Audio.play("c");
     }
 
     @Override
@@ -1775,6 +1784,7 @@ public class GameGame extends JPanel implements MouseListener, MouseMotionListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Audio.play("c");
 
 
     }

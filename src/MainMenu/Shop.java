@@ -252,7 +252,7 @@ public class Shop extends JPanel implements ActionListener {
         showTalismans.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.mainWindow.game.showTalismans();
+                Audio.play("c");Main.mainWindow.game.showTalismans();
             }
         });
 
@@ -284,6 +284,7 @@ public class Shop extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Audio.play("c");
         if (e.getSource() == buyOpen) {
             if(Main.mainWindow.game.OpenShopBought<Main.mainWindow.game.OpenShopLimit){
                 if(Main.mainWindow.game.getUpgradeCost("Open")<=Main.mainWindow.game.Money){

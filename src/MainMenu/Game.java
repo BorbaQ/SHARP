@@ -217,6 +217,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Audio.play("c");
         if (e.getSource() == startGameButton) {
             layeredPane.remove(startGameButton);
             try {
@@ -375,6 +376,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
             takeButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    Audio.play("c");
                     try {
                         if (addTalisman(finalTalismanCategory, finalTalismanIndex)) {
                             layeredPane.remove(ChooseTalisman);
@@ -591,6 +593,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
                     int finalI = i;
                     takeButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
+                            Audio.play("c");
                             sellTalisman(finalI);
                             layeredPane.remove(talismansPanel);
                             showTalismans();
@@ -613,6 +616,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
 
                     comboBox.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
+                            Audio.play("c");
                             String selected = (String) comboBox.getSelectedItem();
                             SwitchTalismans(finalI, Integer.parseInt(selected) - 1);
                             layeredPane.remove(talismansPanel);
@@ -654,6 +658,7 @@ public static Map<String, Class<? extends TalismanA>> talismansAlles =
         Goback.addActionListener(new  ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Audio.play("c");
                 layeredPane.remove(talismansPanel);
                 layeredPane.revalidate();
                 layeredPane.repaint();

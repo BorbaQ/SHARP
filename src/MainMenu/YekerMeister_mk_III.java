@@ -895,11 +895,6 @@ public class YekerMeister_mk_III {
 //                21,29,31,39,41,49,17
 //        }));
 
-        int[][] list = {{0,1},{0,1},{1,1}};
-
-        int[][] list2 = new int[list[0].length][list.length];
-
-        for (int[] )
 
     }
 }

@@ -127,9 +127,11 @@ public class Options extends JPanel implements ActionListener {
         resolutionDropdown.addActionListener(e -> OptionHolder.repaint());
         goBackButton.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
+                Audio.play("c");
                 OptionHolder.repaint();
             }
             public void mouseExited(MouseEvent e) {
+                Audio.play("c");
                 OptionHolder.repaint();
             }
         });
@@ -146,6 +148,7 @@ public class Options extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Audio.play("c");
         if (e.getSource()==resolutionDropdown){
             Main.mainWindow.fullscreen = false;
             switch (resolutionDropdown.getSelectedIndex()){
